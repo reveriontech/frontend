@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { FaPhone, FaMapMarkerAlt, FaEnvelope, FaUser, FaEdit, FaComments } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { FaMapMarkerAlt, FaPhone, FaFax, FaEnvelope, FaPaperPlane, FaUser } from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     message: ''
   });
   
@@ -51,7 +51,6 @@ const Contact = () => {
       setFormData({
         name: '',
         email: '',
-        subject: '',
         message: ''
       });
     } catch (error) {
@@ -63,141 +62,298 @@ const Contact = () => {
     }
   };
   
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 15, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.4 }
+    }
+  };
+
+  const contactItems = [
+    {
+      icon: <FaMapMarkerAlt size={24} />,
+      title: "OUR MAIN OFFICE",
+      content: "SoHo 94 Broadway St\nNew York, NY 10001"
+    },
+    {
+      icon: <FaPhone size={24} />,
+      title: "PHONE NUMBER",
+      content: "234-9876-5400\n888-0123-4567 (Toll Free)"
+    },
+    {
+      icon: <FaFax size={24} />,
+      title: "FAX",
+      content: "1-234-567-8900"
+    },
+    {
+      icon: <FaEnvelope size={24} />,
+      title: "EMAIL",
+      content: "hello@theme.com"
+    }
+  ];
+  
   return (
-    <section className="section" id="contact">
-      <div className="container">
-        <div className="row justify-content-center">
-          <div className="col-12 text-center">
-            <div className="section-title mb-5">
-              <h4 className="title text-uppercase mb-4">Contact Us</h4>
-              <p className="text-muted">Shaping the future of decentralized technology</p>
-            </div>
-          </div>
-        </div>
+    <section style={{ 
+      backgroundColor: "#ffffff", 
+      padding: "80px 0 40px",
+      minHeight: "calc(100vh - 120px)"
+    }} id="contact">
+      <motion.div 
+        className="container"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        <motion.div variants={itemVariants} className="text-center mb-5">
+          <h2 style={{ 
+            fontSize: '32px', 
+            fontWeight: '700', 
+            color: '#333', 
+            marginBottom: '5px',
+            position: 'relative',
+            display: 'inline-block',
+            textTransform: 'uppercase',
+            letterSpacing: '1px'
+          }}>
+            CONTACT US
+            <div style={{ 
+              height: '4px', 
+              width: '100%', 
+              background: '#faa307', 
+              position: 'absolute',
+              bottom: '-10px',
+              left: '0',
+              boxShadow: '0 3px 8px rgba(250, 163, 7, 0.3)'
+            }}></div>
+          </h2>
+          <p style={{ 
+            maxWidth: '700px', 
+            margin: '25px auto 0', 
+            color: '#666',
+            fontSize: '16px',
+            lineHeight: '1.7'
+          }}>
+            We're here to help and answer any questions you might have. We look forward to hearing from you!
+          </p>
+        </motion.div>
 
-        <div className="row">
-          <div className="col-lg-4 col-md-4 mb-4">
-            <div className="d-flex">
-              <div className="contact-icon me-4">
-                <div className="icon-circle bg-warning d-flex align-items-center justify-content-center" style={{ width: '80px', height: '80px', borderRadius: '50%' }}>
-                  <FaPhone className="text-white fs-4" />
-                </div>
-              </div>
-              <div className="contact-info">
-                <h5 className="mb-2">Call Me</h5>
-                <p className="text-muted">+915 5864 548</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="col-lg-4 col-md-4 mb-4">
-            <div className="d-flex">
-              <div className="contact-icon me-4">
-                <div className="icon-circle bg-warning d-flex align-items-center justify-content-center" style={{ width: '80px', height: '80px', borderRadius: '50%' }}>
-                  <FaMapMarkerAlt className="text-white fs-4" />
-                </div>
-              </div>
-              <div className="contact-info">
-                <h5 className="mb-2">Office</h5>
-                <p className="text-muted">Lot3, block14, Phase 9a, Executive Phase,<br/> Deca Homes, Tacunan</p>
-              </div>
-            </div>
-          </div>
-          
-          <div className="col-lg-4 col-md-4 mb-4">
-            <div className="d-flex">
-              <div className="contact-icon me-4">
-                <div className="icon-circle bg-warning d-flex align-items-center justify-content-center" style={{ width: '80px', height: '80px', borderRadius: '50%' }}>
-                  <FaEnvelope className="text-white fs-4" />
-                </div>
-              </div>
-              <div className="contact-info">
-                <h5 className="mb-2">Send Me</h5>
-                <p className="text-muted">yourname@example.com</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="row mt-4">
-          <div className="col-lg-12">
-            {formStatus.message && (
-              <div className={`alert ${formStatus.isSuccess ? 'alert-success' : 'alert-danger'} mb-4`}>
-                {formStatus.message}
-              </div>
-            )}
-            
-            <form onSubmit={handleSubmit}>
-              <div className="row mb-4">
-                <div className="col-md-4 mb-3 mb-md-0">
-                  <label htmlFor="name" className="form-label">Your Name <span className="text-danger">*</span></label>
-                  <input 
-                    name="name" 
-                    id="name" 
-                    type="text" 
-                    className="form-control" 
-                    placeholder="Your Name" 
-                    value={formData.name}
-                    onChange={handleChange}
-                  />
-                </div>
-                
-                <div className="col-md-4 mb-3 mb-md-0">
-                  <label htmlFor="email" className="form-label">Your Email <span className="text-danger">*</span></label>
-                  <input 
-                    name="email" 
-                    id="email" 
-                    type="email" 
-                    className="form-control" 
-                    placeholder="Your email" 
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </div>
-                
-                <div className="col-md-4">
-                  <label htmlFor="subject" className="form-label">Subject</label>
-                  <input 
-                    name="subject" 
-                    id="subject" 
-                    className="form-control" 
-                    placeholder="Your subject" 
-                    value={formData.subject}
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-              
-              <div className="row mb-4">
-                <div className="col-md-12">
-                  <label htmlFor="message" className="form-label">Your Message <span className="text-danger">*</span></label>
-                  <textarea 
-                    name="message" 
-                    id="message" 
-                    rows="5" 
-                    className="form-control" 
-                    placeholder="Your Message" 
-                    value={formData.message}
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
-              </div>
-              
-              <div className="row">
-                <div className="col-12">
-                  <button 
-                    type="submit" 
-                    className="btn btn-warning text-white w-100 py-3"
-                    disabled={formStatus.isSubmitting}
+        <div className="row justify-content-center" style={{ maxWidth: '1100px', margin: '0 auto' }}>
+          <div className="col-lg-6">
+            <div className="row">
+              {contactItems.map((item, index) => (
+                <motion.div 
+                  key={index}
+                  className="col-md-6 mb-4"
+                  variants={itemVariants}
+                >
+                  <div 
+                    style={{ 
+                      background: '#fff', 
+                      borderRadius: '4px', 
+                      padding: '30px 20px',
+                      height: '100%',
+                      textAlign: 'center',
+                      boxShadow: '0 5px 15px rgba(0,0,0,0.05), 0 3px 8px rgba(250, 163, 7, 0.07)',
+                      border: '1px solid #f5f5f5',
+                      transition: 'all 0.2s ease'
+                    }}
                   >
-                    {formStatus.isSubmitting ? 'Sending...' : 'Send Message'}
-                  </button>
-                </div>
-              </div>
-            </form>
+                    <motion.div 
+                      style={{ 
+                        color: '#fff', 
+                        marginBottom: '15px',
+                        backgroundColor: '#faa307',
+                        width: '60px',
+                        height: '60px',
+                        borderRadius: '50%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        margin: '0 auto 20px',
+                        boxShadow: '0 5px 15px rgba(250, 163, 7, 0.25)'
+                      }}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {item.icon}
+                    </motion.div>
+                    <h6 style={{ 
+                      fontSize: '14px', 
+                      fontWeight: '600', 
+                      marginBottom: '10px', 
+                      color: '#333',
+                      textTransform: 'uppercase'
+                    }}>
+                      {item.title}
+                    </h6>
+                    <p style={{ 
+                      margin: 0, 
+                      color: '#666', 
+                      whiteSpace: 'pre-line', 
+                      fontSize: '14px',
+                      lineHeight: '1.6'
+                    }}>
+                      {item.content}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
+          
+          <motion.div 
+            className="col-lg-6"
+            variants={itemVariants}
+          >
+            <motion.div 
+              className="card border-0 p-4"
+              style={{
+                boxShadow: '0 8px 20px rgba(0,0,0,0.05), 0 6px 12px rgba(250, 163, 7, 0.08)',
+                borderRadius: '4px',
+                marginBottom: '30px'
+              }}
+            >
+              <div className="card-body p-2">
+                <h3 style={{ 
+                  fontSize: '22px', 
+                  textAlign: 'center', 
+                  marginBottom: '25px',
+                  color: '#333',
+                  position: 'relative'
+                }}>
+                  SEND A MESSAGE
+                </h3>
+
+                {formStatus.message && (
+                  <motion.div 
+                    className={`alert ${formStatus.isSuccess ? 'alert-success' : 'alert-danger'} mb-4`}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {formStatus.message}
+                  </motion.div>
+                )}
+                
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+                    <div className="input-group" style={{ boxShadow: '0 2px 6px rgba(250, 163, 7, 0.15)' }}>
+                      <span className="input-group-text" style={{ background: '#faa307', border: 'none' }}>
+                        <FaUser className="text-white" />
+                      </span>
+                      <input 
+                        type="text" 
+                        name="name"
+                        className="form-control"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Enter your Name"
+                        style={{ 
+                          padding: '12px 15px',
+                          border: '1px solid #eee',
+                          fontSize: '14px'
+                        }}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="mb-3">
+                    <div className="input-group" style={{ boxShadow: '0 2px 6px rgba(250, 163, 7, 0.15)' }}>
+                      <span className="input-group-text" style={{ background: '#faa307', border: 'none' }}>
+                        <FaEnvelope className="text-white" />
+                      </span>
+                      <input 
+                        type="email" 
+                        name="email"
+                        className="form-control"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Enter a valid email address"
+                        style={{ 
+                          padding: '12px 15px',
+                          border: '1px solid #eee',
+                          fontSize: '14px'
+                        }}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="mb-4">
+                    <textarea 
+                      name="message"
+                      className="form-control"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Your message"
+                      rows="5"
+                      style={{ 
+                        padding: '12px 15px',
+                        border: '1px solid #eee',
+                        fontSize: '14px',
+                        resize: 'none',
+                        boxShadow: '0 2px 6px rgba(250, 163, 7, 0.15)'
+                      }}
+                    ></textarea>
+                  </div>
+                  
+                  <div className="text-center">
+                    <motion.button 
+                      type="submit"
+                      className="btn"
+                      disabled={formStatus.isSubmitting}
+                      style={{ 
+                        backgroundColor: '#faa307',
+                        color: '#fff',
+                        border: 'none',
+                        padding: '10px 30px',
+                        fontSize: '14px',
+                        fontWeight: '600',
+                        borderRadius: '4px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5px',
+                        boxShadow: '0 4px 12px rgba(250, 163, 7, 0.3)'
+                      }}
+                      whileHover={{ 
+                        backgroundColor: '#f99500',
+                        boxShadow: '0 6px 15px rgba(250, 163, 7, 0.4)' 
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                        SUBMIT MESSAGE
+                        <FaPaperPlane size={12} />
+                      </div>
+                    </motion.button>
+                  </div>
+                </form>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </div>
+        
+        <motion.div 
+          className="text-center mt-4"
+          variants={itemVariants}
+          style={{
+            color: '#888',
+            fontSize: '13px',
+            paddingTop: '20px'
+          }}
+        >
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

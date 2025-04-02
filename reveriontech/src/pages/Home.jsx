@@ -13,6 +13,7 @@ import Pricing from '../components/sections/Pricing';
 import Partners from '../components/sections/Partners';
 import Contact from '../components/sections/Contact';
 import StartProject from '../components/sections/StartProject';
+import FAQ from '../components/sections/FAQ';
 
 const Home = () => {
   useEffect(() => {
@@ -58,6 +59,7 @@ const Home = () => {
       <Pricing />
       <StartProject />
       <Partners />
+      <FAQ />
       <Contact />
     </main>
   );

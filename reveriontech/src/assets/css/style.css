@@ -60,15 +60,15 @@ a.text-success:hover {
 }
 
 .bg-warning {
-  background-color: #FCD581 !important;
+  background-color: #faa307 !important;
 }
 
 .text-warning {
-  color: #ffd477 !important;
+  color: #faa307 !important;
 }
 
 a.text-warning:hover {
-  color: #fbc859 !important;
+  color: #faa307 !important;
 }
 
 .bg-info {
@@ -260,7 +260,7 @@ p {
 .tab-hover-effect {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
-  border-color: #ffd477 !important;
+  border-color: #fbc44f !important;
   background-color: rgba(255, 212, 119, 0.05);
   transition: all 0.3s ease;
 }
@@ -277,7 +277,7 @@ p {
 .nav-link.active .capabilities {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
-  border-color: #ffd477 !important;
+  border-color: #fbc44f !important;
 }
 
 .team-detail {
@@ -288,7 +288,7 @@ p {
 .team-hover-effect {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
-  border: 1px solid #ffd477 !important;
+  border: 1px solid #fbc44f !important;
   background-color: rgba(255, 212, 119, 0.05);
   transition: all 0.3s ease;
 }
@@ -307,7 +307,7 @@ p {
 }
 
 .team-hover-effect .rounded-pill {
-  border: 1px solid #ffd477;
+  border: 1px solid #fbc44f;
 }
 
 .btn-primary {
@@ -383,8 +383,8 @@ p {
 }
 
 .btn-warning {
-  background-color: #FCD581 !important;
-  border: 1px solid #FCD581 !important;
+  background-color: #faa307 !important;
+  border: 1px solid #faa307 !important;
   color: #ffffff !important;
 }
 
@@ -395,14 +395,14 @@ p {
 }
 
 .btn-outline-warning {
-  border: 1px solid #FCD581;
-  color: #FCD581;
+  border: 1px solid #faa307;
+  color: #faa307;
   background-color: transparent;
 }
 
 .btn-outline-warning:hover, .btn-outline-warning:focus, .btn-outline-warning:active, .btn-outline-warning.active, .btn-outline-warning.focus, .btn-outline-warning:not(:disabled):not(.disabled):active {
-  background-color: #FCD581;
-  border-color: #FCD581;
+  background-color: #faa307;
+  border-color: #faa307;
   color: #ffffff;
 }
 
@@ -1176,7 +1176,7 @@ button:not(:disabled) {
   padding: 15px;
   display: flex;
   align-items: center;
-  background-color: #FCD581;
+  background-color: #faa307;
   position: relative;
 }
 
@@ -1189,7 +1189,7 @@ button:not(:disabled) {
   align-items: center;
   justify-content: center;
   margin-right: 12px;
-  color: #FCD581;
+  color: #faa307;
   font-size: 18px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -1303,7 +1303,7 @@ button:not(:disabled) {
 }
 
 .mini-chat-input-form:focus-within {
-  border-color: #FCD581;
+  border-color: #faa307;
   background-color: #fff;
   box-shadow: 0 2px 6px rgba(252, 213, 129, 0.1);
 }
@@ -1316,7 +1316,7 @@ button:not(:disabled) {
 }
 
 .mini-chat-input-form:focus-within .mini-chat-emoji {
-  color: #FCD581;
+  color: #faa307;
 }
 
 .mini-chat-input {
@@ -1336,7 +1336,7 @@ button:not(:disabled) {
 .mini-chat-send {
   background: none;
   border: none;
-  color: #FCD581;
+  color: #faa307;
   font-size: 16px;
   cursor: pointer;
   display: flex;
@@ -1367,7 +1367,7 @@ button:not(:disabled) {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #FCD581;
+  background-color: #faa307;
   color: white;
   border: none;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -1400,7 +1400,7 @@ button:not(:disabled) {
 }
 
 
-/* Auth Modal Styles with Brand Colors (#FCD581) */
+/* Auth Modal Styles with Brand Colors (#faa307) */
 .auth-modal-overlay {
   position: fixed;
   top: 0;
@@ -1430,7 +1430,7 @@ button:not(:disabled) {
   position: relative;
   overflow: hidden;
   animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: 1px solid #FCD581;
+  border: 1px solid #faa307;
 }
 
 @keyframes slideUp {
@@ -1466,7 +1466,7 @@ button:not(:disabled) {
   transform: translateX(-50%);
   width: 50px;
   height: 3px;
-  background-color: #FCD581;
+  background-color: #faa307;
   border-radius: 2px;
 }
 
@@ -1509,12 +1509,12 @@ button:not(:disabled) {
 }
 
 .form-group label:focus-within {
-  border: 1px solid #FCD581;
+  border: 1px solid #faa307;
   box-shadow: 0 0 0 2px rgba(252, 213, 129, 0.3);
 }
 
 .input-icon {
-  color: #FCD581;
+  color: #faa307;
   margin-right: 10px;
   font-size: 18px;
 }
@@ -1549,11 +1549,11 @@ button:not(:disabled) {
 
 .remember-me input {
   margin-right: 6px;
-  accent-color: #FCD581;
+  accent-color: #faa307;
 }
 
 .forgot-password {
-  color: #FCD581;
+  color: #faa307;
   text-decoration: none;
   transition: all 0.2s;
 }
@@ -1566,9 +1566,9 @@ button:not(:disabled) {
 .submit-button {
   width: 100%;
   padding: 12px;
-  border: 1px solid #FCD581;
+  border: 1px solid #faa307;
   border-radius: 4px;
-  background: #FCD581;
+  background: #faa307;
   color: #333;
   font-weight: 600;
   cursor: pointer;
@@ -1666,7 +1666,7 @@ button:not(:disabled) {
 .switch-mode button {
   background: none;
   border: none;
-  color: #FCD581;
+  color: #faa307;
   cursor: pointer;
   font-weight: 600;
   padding: 0;

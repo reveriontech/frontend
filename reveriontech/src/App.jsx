@@ -15,6 +15,7 @@ import About from './components/sections/About';
 import Services from './components/sections/Services';
 import Team from './components/sections/Team';
 import Pricing from './components/sections/Pricing';
+import FAQ from './components/sections/FAQ';
 import Contact from './components/sections/Contact';
 import ChatWidget from './components/sections/ChatWidget';
 import MobileMenuButton from './components/common/MobileMenuButton'; 
@@ -68,7 +69,9 @@ function App() {
         <Route path="/service" element={<Services />} />
         <Route path="/team" element={<Team />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/partners" element={<partners />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />

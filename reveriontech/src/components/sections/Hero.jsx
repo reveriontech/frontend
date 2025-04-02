@@ -33,9 +33,10 @@ const Hero = () => {
                   </p>
                   <div className="mt-4 pt-2">
                     <a 
-                      href="#project" 
+                      href="https://forms.clickup.com/9016503780/p/f/8cptvf4-496/BTYBZQ6D05CPYSPJKU/project-intake-form" 
                       className="btn btn-custom"
-                      onClick={(e) => scrollToSection('project', e)}
+                      target="_blank" 
+                      rel="noopener noreferrer" 
                     >
                      Start your project
                     </a>

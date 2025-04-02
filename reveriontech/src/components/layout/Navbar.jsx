@@ -331,6 +331,15 @@ const Navbar = () => {
                   Solutions
                 </a>
               </li>
+              <li className={`nav-item ${isActive('partners') ? 'active' : ''}`}>
+                <a 
+                  className="nav-link custom-nav-link" 
+                  href="#partners" 
+                  onClick={(e) => scrollToSection('partners', e)}
+                >
+                  Partners
+                </a>
+              </li>
               <li className={`nav-item ${isActive('contact') ? 'active' : ''}`}>
                 <a 
                   className="nav-link custom-nav-link" 
@@ -356,7 +365,7 @@ const Navbar = () => {
                 </li>
               ) : (
                 // Show login/signup buttons if no user
-                <li className={`button--form ${isSticky ? 'sticky' : ''} ms-lg-2`}>
+                <li className={`button--form ${isSticky ? 'sticky' : ''} ms-lg-2`} style={{marginLeft: "auto"}}>
                   <div 
                     className={`login--button ${isSticky && !isMobile ? 'sticky' : ''}`}
                     onClick={openLoginModal}
