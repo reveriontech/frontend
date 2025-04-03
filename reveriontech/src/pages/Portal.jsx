@@ -10,6 +10,7 @@ import Tasks from '../components/dashsection/Tasks';
 import Team from '../components/dashsection/Team';
 import Settings from '../components/dashsection/Settings';
 import ProjectNotes from '../components/dashsection/ProjectNotes';
+import MobileMenuButton from '../components/common/MobileMenuButton';
 
 // Map of routes to component keys - defined outside component to prevent recreating on each render
 const ROUTE_MAP = {
@@ -112,19 +113,12 @@ const Portal = () => {
 
   return (
     <div className="portal-wrapper">
-      {/* Mobile Menu Toggle Button */}
-      <button 
-        className="mobile-menu-toggle d-md-none" 
-        onClick={toggleSidebar}
-        aria-label={isSidebarOpen ? "Close menu" : "Open menu"}
-        aria-expanded={isSidebarOpen}
-      >
-        <i className={`bi ${isSidebarOpen ? 'bi-x-lg' : 'bi-list'}`}></i>
-      </button>
+      {/* Mobile Menu Toggle Button - Updated to use the MobileMenuButton component */}
+      <MobileMenuButton isOpen={isSidebarOpen} toggleMenu={toggleSidebar} />
 
-      {/* Overlay for mobile sidebar */}
-      {isMobile && isSidebarOpen && 
-        <div className="overlay d-md-none show" onClick={closeSidebar}></div>
+      {/* Overlay for sidebar - Updated to show on screens up to 1920px */}
+      {isSidebarOpen && 
+        <div className="overlay d-xxl-none show" onClick={closeSidebar}></div>
       }
       
       {/* Sidebar */}

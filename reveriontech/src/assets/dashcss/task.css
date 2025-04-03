@@ -515,10 +515,27 @@
     color: #555;
     cursor: pointer;
   }
+
+  .task-type-icon {
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
   
+  .task-type-text {
+    font-weight: 500;
+  }
+  
+
   .task-project-icon, .task-type-icon {
     font-size: 12px;
     color: #777;
+  }
+
+  .task-type-arrow {
+    font-size: 10px;
+    color: #888;
   }
   
   .task-project-arrow, .task-type-arrow {
@@ -526,21 +543,86 @@
     color: #999;
   }
   
-  .task-name-input-container {
-    margin-bottom: 16px;
+  /* Task name input styles */
+.task-name-input-container {
+  margin-bottom: 16px;
+  position: relative;
+  cursor: text;
+}
+
+.task-name-heading {
+  font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+  
+  .task-name-placeholder {
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    padding: 8px 0;
+    cursor: text;
+    border-bottom: 2px solid transparent;
+  }
+
+  .task-name-placeholder:hover {
+    border-bottom: 2px solid #e0e0e0;
   }
   
   .task-name-input {
     width: 100%;
+    font-size: 14px;
+    color: #666;
+    padding: 8px 0;
+    border: none;
+    border-bottom: 1px solid transparent;
+    outline: none;
+    background: transparent;
+  }  
+  
+  .task-name-input:focus {
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .task-name-input::placeholder {
+    color: #aaa;
+    font-style: italic;
+  }
+  
+  .task-description-container {
+    margin-bottom: 16px;
+    cursor: pointer;
+  }
+  
+  .task-description-placeholder {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .task-description-placeholder:hover {
+    background-color: #f5f5f5;
+  }
+
+  .task-description-textarea {
+    width: 100%;
+    min-height: 100px;
     padding: 12px;
     border: 1px solid #e0e0e0;
     border-radius: 4px;
-    font-size: 15px;
-  }
-  
-  .task-name-input:focus {
-    border-color: #5e6ad2;
+    resize: vertical;
+    font-size: 14px;
+    color: #333;
     outline: none;
+  }
+
+  .task-description-textarea:focus {
+    border-color: #6355FF;
   }
   
   .task-description-btn, .task-ai-btn {
@@ -555,6 +637,11 @@
   }
   
   .task-description-icon, .task-ai-icon {
+    font-size: 16px;
+    color: #888;
+  }
+
+  .task-description-icon {
     font-size: 16px;
     color: #888;
   }
@@ -738,3 +825,832 @@
   .task-create-arrow {
     font-size: 10px;
   }
+ 
+/* Priority dropdown styles */
+.priority-container {
+  position: relative;
+  display: inline-block;
+}
+
+.priority-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  width: 200px;
+  border: 1px solid #e0e0e0;
+  margin-top: 5px;
+  overflow: hidden;
+}
+.priority-option {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  height: 36px;
+}
+
+.priority-option:hover {
+  background-color: #f5f7f9;
+}
+
+.priority-flag {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.priority-label {
+  flex-grow: 1;
+}
+
+.priority-clear {
+  color: #888;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.priority-urgent {
+  color: #d50000;
+}
+
+.priority-high {
+  color: #ff9800;
+}
+
+.priority-normal {
+  color: #2196f3;
+}
+
+.priority-low {
+  color: #9e9e9e;
+}
+
+.due-date-calendar-day {
+  height: 32px !important;
+  width: 32px !important;
+}
+
+.due-date-calendar-day.current-day {
+  background-color: #e53935;  /* Red color as shown in the image */
+  color: white;
+}
+
+.due-date-calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 4px;
+  text-align: center;
+  padding: 4px;
+}
+
+.due-date-preset:hover {
+  background-color: #f5f7f9;
+}
+
+.due-date-preset {
+  padding: 8px 16px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  height: 36px;
+  align-items: center;
+}
+
+/* Ensure the date picker dropdown is properly positioned */
+.date-picker-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0; /* Change from right: 0 to left: 0 */
+  z-index: 1000;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  width: 520px;
+  border: 1px solid #e0e0e0;
+  margin-top: 5px;
+  display: block; /* Ensure it's displayed as a block */
+  opacity: 1; /* Ensure full opacity */
+  visibility: visible; /* Ensure visibility */
+}
+
+.due-date-calendar-day {
+  height: 28px;
+  width: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 13px;
+  margin: 0 auto;
+}
+
+.due-date-calendar-day:hover {
+  background-color: #f0f0f5;
+}
+
+.due-date-calendar-day.current-day {
+  background-color: #6355FF;
+  color: white;
+}
+
+.due-date-calendar-day.empty-day {
+  cursor: default;
+}
+
+/* Styles for enhanced date picker with recurring options */
+
+/* Search field styling */
+.due-date-search {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.due-date-search input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+/* Tab icons */
+.due-date-tab-icon {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+/* Recurring option styling */
+.due-date-preset-recurring {
+  border-top: 1px solid #eee;
+  margin-top: 8px;
+  padding-top: 12px;
+}
+
+.due-date-recurring {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Layout for date picker with recurring options */
+.date-picker-content {
+  display: flex;
+  width: 100%;
+}
+
+/* Recurring options panel */
+.due-date-recurring-panel {
+  width: 200px;
+  padding: 16px;
+  border-right: 1px solid #eee;
+}
+
+.due-date-recurring-options {
+  width: 100%;
+}
+
+.due-date-recurring-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.due-date-recurring-actions {
+  display: flex;
+  gap: 12px;
+  color: #666;
+}
+
+.due-date-recurring-refresh,
+.due-date-recurring-menu {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.due-date-recurring-selector {
+  margin-bottom: 16px;
+  position: relative;
+}
+
+/* Custom dropdown styling */
+.due-date-dropdown-button {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  color: #888;
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  margin-top: 2px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-option {
+  padding: 8px 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdown-option:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdown-option.selected {
+  background-color: #f0f0f5;
+}
+
+.dropdown-check {
+  color: #6355FF;
+  font-weight: bold;
+}
+
+.due-date-recurring-checkbox {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.due-date-recurring-checkbox input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.recur-forever {
+  color: #6355FF;
+}
+
+.recur-forever-checkbox {
+  accent-color: #6355FF;
+}
+
+.due-date-recurring-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.due-date-recurring-cancel {
+  background: none;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #666;
+}
+
+.due-date-recurring-save {
+  background-color: #6355FF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Other month day styling */
+.due-date-calendar-day.other-month-day {
+  color: #ccc;
+}
+
+/* Selected day styling */
+.due-date-calendar-day.selected-day {
+  background-color: #6355FF;
+  color: white;
+}
+
+/* Make presets scrollable if too many */
+.due-date-presets {
+  width: 200px;
+  border-right: 1px solid #eee;
+  overflow-y: auto;
+  max-height: 350px;
+}
+
+/* Calendar adjustments for recurring view */
+.due-date-calendar {
+  flex: 1;
+  padding: 16px;
+}
+
+/* Empty search results styling */
+
+/* Priority dropdown styles */
+.priority-container {
+  position: relative;
+  display: inline-block;
+}
+
+.priority-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  width: 200px;
+  border: 1px solid #e0e0e0;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.priority-option {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  height: 36px;
+}
+
+.priority-option:hover {
+  background-color: #f5f7f9;
+}
+
+.priority-flag {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.priority-label {
+  flex-grow: 1;
+}
+
+.priority-clear {
+  color: #888;
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.priority-urgent {
+  color: #d50000;
+}
+
+.priority-high {
+  color: #ff9800;
+}
+
+.priority-normal {
+  color: #2196f3;
+}
+
+.priority-low {
+  color: #9e9e9e;
+}
+
+/* Task option button styling */
+.task-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #666;
+  cursor: pointer;
+  height: 32px;
+}
+
+.task-option-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.task-option-icon {
+  font-size: 14px;
+}
+
+/* Fixed date picker styles to ensure proper positioning */
+.date-picker-container {
+  position: relative;
+  display: inline-block;
+  margin-left: 0; /* Remove the fixed margin causing positioning issues */
+}
+
+.date-picker-dropdown {
+  position: fixed !important; /* Use fixed instead of absolute */
+  z-index: 9999 !important; /* Very high z-index to ensure it's on top */
+  width: 520px !important;
+  max-width: 90vw !important; /* Prevent overflow on small screens */
+  margin-top: 5px !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 8px !important;
+  border: 1px solid #e0e0e0 !important;
+  /* Ensure content is visible */
+  overflow: visible !important;
+  height: auto !important;
+  transform: none !important;
+}
+
+/* Ensure the calendar navigation elements are properly positioned */
+.calendar-nav-arrows {
+  display: flex;
+  gap: 8px;
+  position: relative; /* Ensure proper stacking */
+  z-index: 1051;
+}
+
+.calendar-nav-arrow {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #555;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* Ensure the full calendar view is visible */
+.due-date-picker {
+  position: relative;
+  z-index: auto;
+  max-height: none; /* Remove any max-height constraints */
+}
+
+/* Reset any problematic constraints */
+.due-date-picker,
+.date-picker-content,
+.due-date-calendar,
+.due-date-calendar-days {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.due-date-tabs,
+.date-picker-content,
+.due-date-presets,
+.due-date-calendar,
+.due-date-calendar-days,
+.due-date-calendar-weekdays,
+.due-date-calendar-header,
+.calendar-today-selector {
+  position: relative;
+  z-index: auto; /* Let the natural stacking context work */
+}
+
+/* Ensure calendar content is fully visible */
+.date-picker-content {
+  display: flex;
+  max-height: none; /* Remove any height constraints */
+  overflow: visible;
+}
+
+/* Reset media queries that may be causing positioning issues */
+@media (max-width: 1024px) {
+  .date-picker-container {
+    margin-left: 0;
+  }
+  
+  .date-picker-dropdown {
+    transform: none;
+    top: calc(100% + 5px);
+    left: 0;
+  }
+}
+
+.task-type-dropdown,
+.status-options-dropdown,
+.date-picker-dropdown,
+.priority-dropdown {
+  z-index: 1002;
+  background-color: white; /* Ensure solid background */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Strong shadow for depth */
+}
+
+.due-date-tabs {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+
+.due-date-tab {
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #555;
+  position: relative;
+  flex: 1;
+  text-align: center;
+}
+
+.due-date-tab.active {
+  color: #6355FF;
+  font-weight: 500;
+}
+
+.due-date-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #6355FF;
+}
+
+.date-picker-content {
+  display: flex;
+}
+
+.due-date-presets {
+  width: 200px;
+  border-right: 1px solid #eee;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.due-date-preset {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.due-date-preset:hover {
+  background-color: #f5f7f9;
+}
+
+.due-date-day {
+  color: #888;
+  font-size: 13px;
+}
+
+.due-date-recurring {
+  color: #888;
+  font-size: 16px;
+}
+
+.due-date-calendar {
+  flex: 1;
+  padding: 16px;
+}
+
+.due-date-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.month-year-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}
+
+.month-dropdown-arrow {
+  font-size: 10px;
+  color: #888;
+}
+
+.calendar-today-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.today-text {
+  font-size: 14px;
+  color: #6355FF;
+  cursor: pointer;
+}
+
+.calendar-nav-arrows {
+  position: static !important;
+  z-index: auto !important;
+}
+
+.calendar-nav-arrow {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  color: #555;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.calendar-nav-arrow:hover {
+  background-color: #e0e0e0;
+}
+
+.due-date-calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.due-date-calendar-weekdays div {
+  font-size: 12px;
+  color: #888;
+  padding: 4px 0;
+}
+
+/* Ensure grid is properly spaced */
+.due-date-calendar-days {
+  grid-template-columns: repeat(7, 1fr) !important;
+  grid-gap: 4px !important;
+}
+
+.due-date-calendar-day {
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 13px;
+  margin: 0 auto;
+  color: #333;
+}
+
+.due-date-calendar-day:hover:not(.empty-day):not(.current-day) {
+  background-color: #f0f0f5;
+}
+
+.due-date-calendar-day.current-day {
+  background-color: #e53935;
+  color: white;
+}
+
+.due-date-calendar-day.selected-day:not(.current-day) {
+  background-color: #6355FF;
+  color: white;
+}
+
+.due-date-calendar-day.empty-day {
+  cursor: default;
+}
+
+.due-date-calendar-day.other-month-day {
+  color: #ccc;
+}
+
+/* Task type dropdown styles */
+.task-type-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1050;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  border: 1px solid #e0e0e0;
+  margin-top: 5px;
+  overflow: hidden;
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.task-project-selector {
+  display: flex;
+  margin-bottom: 16px;
+  gap: 10px;
+  position: relative;
+}
+
+.task-type-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.task-type-btn:hover {
+  background-color: #f5f5f5;
+}
+
+.task-type-option.selected {
+  background-color: #f0f0f5;
+}
+
+.task-type-radio {
+  margin-right: 10px;
+  font-size: 14px;
+  width: 18px;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.task-type-label {
+  flex-grow: 1;
+}
+
+.task-type-check {
+  color: #6355FF;
+  margin-left: 10px;
+  font-weight: bold;
+}
+/* Ensure all buttons in the modal are clickable */
+.task-modal button,
+.task-modal-tab,
+.task-modal-action,
+.task-modal-close,
+.task-type-btn,
+.task-status-badge,
+.task-option-btn,
+.task-description-btn,
+.task-ai-btn,
+.task-show-fields-btn,
+.task-new-field-btn,
+.task-templates-btn,
+.task-attachment-btn,
+.task-create-btn {
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure the modal is above other content */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.task-modal {
+  background-color: white;
+  border-radius: 8px;
+  width: 650px;
+  max-width: 95%;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
+  position: relative;
+}
+
+/* Fix for dropdowns to ensure they're clickable */
+.task-type-dropdown,
+.status-options-dropdown {
+  z-index: 1002;
+}

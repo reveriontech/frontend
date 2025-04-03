@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../../assets/dashcss/task.css';
+import AddDate from './taskcomponent/Adddate';
+import Priority from '../dashsection/taskcomponent/Priority';
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -15,13 +17,19 @@ const Tasks = () => {
     dueDate: '',
     priority: '',
     status: 'TO DO',
-    comments: ''
+    comments: '',
+    taskType: 'Task',
+    description: ''
   });
   const [showAddTaskModal, setShowAddTaskModal] = useState(false);
   const [showStatusDropdown, setShowStatusDropdown] = useState(null);
   const [showStatusOptions, setShowStatusOptions] = useState(false);
+  const [showTaskTypeDropdown, setShowTaskTypeDropdown] = useState(false);
+  const [showDescriptionInput, setShowDescriptionInput] = useState(false);
   const statusButtonRef = useRef(null);
   const statusDropdownRef = useRef(null);
+  const taskTypeButtonRef = useRef(null);
+  const taskTypeDropdownRef = useRef(null);
 
   // Effect to determine which status tables to show based on task data
   useEffect(() => {
@@ -29,9 +37,10 @@ const Tasks = () => {
     setVisibleStatuses(statuses);
   }, [tasks]);
 
-  // Handle outside click for status dropdown
+  // Handle outside click for dropdowns
   useEffect(() => {
     function handleClickOutside(event) {
+      // Status dropdown
       if (
         statusDropdownRef.current && 
         !statusDropdownRef.current.contains(event.target) &&
@@ -39,6 +48,16 @@ const Tasks = () => {
         !statusButtonRef.current.contains(event.target)
       ) {
         setShowStatusOptions(false);
+      }
+
+      // Task type dropdown
+      if (
+        taskTypeDropdownRef.current && 
+        !taskTypeDropdownRef.current.contains(event.target) &&
+        taskTypeButtonRef.current &&
+        !taskTypeButtonRef.current.contains(event.target)
+      ) {
+        setShowTaskTypeDropdown(false);
       }
     }
 
@@ -95,7 +114,9 @@ const Tasks = () => {
       dueDate: '',
       priority: '',
       status: 'TO DO',
-      comments: ''
+      comments: '',
+      taskType: 'Task',
+      description: ''
     });
     
     setShowAddTaskModal(false);
@@ -113,6 +134,46 @@ const Tasks = () => {
     setShowStatusOptions(false);
   };
 
+  // Handle task type change
+  const handleTaskTypeChange = (taskType) => {
+    setNewTask(prev => ({ ...prev, taskType }));
+    setShowTaskTypeDropdown(false);
+  };
+
+  // Get placeholder text based on task type
+  const getPlaceholderByTaskType = () => {
+    switch(newTask.taskType) {
+      case 'Milestone':
+        return "Milestone Name";
+      case 'Form Response':
+        return "Form Response Name";
+      default:
+        return "Task Name or type '/' for commands";
+    }
+  };
+
+  // Get create button text based on task type
+  const getCreateButtonText = () => {
+    switch(newTask.taskType) {
+      case 'Milestone':
+        return "Create Milestone";
+      case 'Form Response':
+        return "Create Form Response";
+      default:
+        return "Create Task";
+    }
+  };
+
+  // Handle priority change (used by Priority component)
+  const handlePriorityChange = (priority) => {
+    setNewTask(prev => ({ ...prev, priority }));
+  };
+
+  // Handle due date change (used by AddDate component)
+  const handleDueDateChange = (dueDate) => {
+    setNewTask(prev => ({ ...prev, dueDate }));
+  };
+
   // Handle status change for existing task
   const handleTaskStatusChange = (taskId, newStatus) => {
     setTasks(prev => 
@@ -121,6 +182,39 @@ const Tasks = () => {
       )
     );
     setShowStatusDropdown(null);
+  };
+
+  // Render task type dropdown
+  const renderTaskTypeDropdown = () => {
+    return (
+      <div className="task-type-dropdown" ref={taskTypeDropdownRef}>
+        <div className="task-type-header">Task Types</div>
+        <div 
+          className={`task-type-option ${newTask.taskType === 'Task' ? 'selected' : ''}`}
+          onClick={() => handleTaskTypeChange("Task")}
+        >
+          <span className="task-type-radio">⚪</span>
+          <span className="task-type-label">Task (default)</span>
+          {newTask.taskType === 'Task' && <span className="task-type-check">✓</span>}
+        </div>
+        <div 
+          className={`task-type-option ${newTask.taskType === 'Milestone' ? 'selected' : ''}`}
+          onClick={() => handleTaskTypeChange("Milestone")}
+        >
+          <span className="task-type-radio">◇</span>
+          <span className="task-type-label">Milestone</span>
+          {newTask.taskType === 'Milestone' && <span className="task-type-check">✓</span>}
+        </div>
+        <div 
+          className={`task-type-option ${newTask.taskType === 'Form Response' ? 'selected' : ''}`}
+          onClick={() => handleTaskTypeChange("Form Response")}
+        >
+          <span className="task-type-radio">📄</span>
+          <span className="task-type-label">Form Response</span>
+          {newTask.taskType === 'Form Response' && <span className="task-type-check">✓</span>}
+        </div>
+      </div>
+    );
   };
 
   // Render status dropdown in add task modal
@@ -276,6 +370,7 @@ const Tasks = () => {
                         <div className="task-name-content">
                           <span className={`task-status-indicator ${statusClass}`}>{statusIcon}</span>
                           <span>{task.name}</span>
+                          {task.description && <span className="task-description-indicator">📝</span>}
                         </div>
                       </td>
                       <td className="task-assignee">
@@ -292,7 +387,13 @@ const Tasks = () => {
                       </td>
                       <td className="task-priority">
                         {task.priority && (
-                          <span>{task.priority}</span>
+                          <span className={`priority-indicator priority-${task.priority.toLowerCase()}`}>
+                            {task.priority === 'Urgent' && '🔴'}
+                            {task.priority === 'High' && '🟡'}
+                            {task.priority === 'Normal' && '🔵'}
+                            {task.priority === 'Low' && '⚪'}
+                            {task.priority}
+                          </span>
                         )}
                       </td>
                       <td className="task-status">
@@ -385,7 +486,12 @@ const Tasks = () => {
       
       {/* Add Task Modal */}
       {showAddTaskModal && (
-        <div className="modal-overlay">
+        <div className="modal-overlay" onClick={(e) => {
+          // Only close if clicking directly on the overlay, not on modal content
+          if (e.target === e.currentTarget) {
+            setShowAddTaskModal(false);
+          }
+        }}>
           <div className="task-modal">
             <div className="task-modal-tabs">
               <button className="task-modal-tab active">Task</button>
@@ -402,33 +508,80 @@ const Tasks = () => {
 
             <div className="task-modal-section">
               <div className="task-project-selector">
-                <button className="task-project-btn">
-                  <span className="task-project-icon">☰</span>
-                  <span className="task-project-name">Reverion Website</span>
-                  <span className="task-project-arrow">▼</span>
-                </button>
-                <button className="task-type-btn">
-                  <span className="task-type-icon">◯</span>
-                  <span className="task-type-text">Task</span>
+                <button 
+                  className="task-type-btn"
+                  onClick={() => setShowTaskTypeDropdown(!showTaskTypeDropdown)}
+                  ref={taskTypeButtonRef}
+                >
+                  <span className="task-type-icon">
+                    {newTask.taskType === 'Task' || !newTask.taskType ? '⚪' : 
+                     newTask.taskType === 'Milestone' ? '◇' : 
+                     newTask.taskType === 'Form Response' ? '📄' : '⚪'}
+                  </span>
+                  <span className="task-type-text">{newTask.taskType || 'Task'}</span>
                   <span className="task-type-arrow">▼</span>
                 </button>
+                {showTaskTypeDropdown && (
+                  <div className="task-type-dropdown" ref={taskTypeDropdownRef}>
+                    <div className="task-type-header">Task Types</div>
+                    <div 
+                      className={`task-type-option ${newTask.taskType === 'Task' || !newTask.taskType ? 'selected' : ''}`}
+                      onClick={() => handleTaskTypeChange("Task")}
+                    >
+                      <span className="task-type-radio">⚪</span>
+                      <span className="task-type-label">Task (default)</span>
+                      {(newTask.taskType === 'Task' || !newTask.taskType) && <span className="task-type-check">✓</span>}
+                    </div>
+                    <div 
+                      className={`task-type-option ${newTask.taskType === 'Milestone' ? 'selected' : ''}`}
+                      onClick={() => handleTaskTypeChange("Milestone")}
+                    >
+                      <span className="task-type-radio">◇</span>
+                      <span className="task-type-label">Milestone</span>
+                      {newTask.taskType === 'Milestone' && <span className="task-type-check">✓</span>}
+                    </div>
+                    <div 
+                      className={`task-type-option ${newTask.taskType === 'Form Response' ? 'selected' : ''}`}
+                      onClick={() => handleTaskTypeChange("Form Response")}
+                    >
+                      <span className="task-type-radio">📄</span>
+                      <span className="task-type-label">Form Response</span>
+                      {newTask.taskType === 'Form Response' && <span className="task-type-check">✓</span>}
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="task-name-input-container">
                 <input
                   type="text"
                   className="task-name-input"
-                  placeholder="Task Name or type '/' for commands"
+                  placeholder={getPlaceholderByTaskType()}
                   name="name"
                   value={newTask.name}
                   onChange={handleInputChange}
                 />
               </div>
 
-              <div className="task-description-btn">
-                <span className="task-description-icon">📝</span>
-                <span>Add description</span>
-              </div>
+              {showDescriptionInput ? (
+                <div className="task-description-container">
+                  <textarea
+                    className="task-description-textarea"
+                    placeholder="Add a detailed description..."
+                    name="description"
+                    value={newTask.description}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              ) : (
+                <div 
+                  className="task-description-btn"
+                  onClick={() => setShowDescriptionInput(true)}
+                >
+                  <span className="task-description-icon">📝</span>
+                  <span>Add description</span>
+                </div>
+              )}
 
               <div className="task-ai-btn">
                 <span className="task-ai-icon">💫</span>
@@ -452,24 +605,19 @@ const Tasks = () => {
                   <span className="task-option-text">Assignee</span>
                 </button>
                 
-                <button className="task-option-btn">
-                  <span className="task-option-icon">📅</span>
-                  <span className="task-option-text">Due date</span>
-                </button>
+                {/* Using the AddDate component */}
+                <AddDate 
+                  onDateChange={handleDueDateChange} 
+                  initialDate={newTask.dueDate}
+                />
                 
-                <button className="task-option-btn">
-                  <span className="task-option-icon">🏳️</span>
-                  <span className="task-option-text">Priority</span>
-                </button>
+                {/* Using the Priority component */}
+                <Priority 
+                  onPriorityChange={handlePriorityChange}
+                  initialPriority={newTask.priority}
+                />
                 
-                <button className="task-option-btn">
-                  <span className="task-option-icon">🏷️</span>
-                  <span className="task-option-text">Tags</span>
-                </button>
-                
-                <button className="task-option-btn">
-                  <span className="task-option-more">...</span>
-                </button>
+               
               </div>
 
               <div className="task-custom-fields">
@@ -497,7 +645,7 @@ const Tasks = () => {
                   onClick={handleAddTask}
                   disabled={!newTask.name}
                 >
-                  Create Task
+                  {getCreateButtonText()}
                   <span className="task-create-arrow">▼</span>
                 </button>
               </div>
