@@ -12,5 +12,12 @@ export default defineConfig({
 		usePolling: true,
 		interval: 30,
 		},
-	}
+	},
+	// Add this test configuration
+	test: {
+		globals: true,
+		environment: 'jsdom',
+		setupFiles: ['./tests/setup.js'],
+		include: ['**/*.{test,spec}.{js,jsx,ts,tsx}'],
+	  }
 })
