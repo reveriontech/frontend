@@ -76,7 +76,7 @@ const Dashboard = () => {
     if (barChartRef.current) {
       barChartRef.current.data.labels = labels;
       barChartRef.current.data.datasets[0].data = salesValues;
-      barChartRef.current.data.datasets[1].data = viewsValues;
+      barChartRef.current.data.datasets[1].data = viewsValues;  
       barChartRef.current.update();
     }
   };

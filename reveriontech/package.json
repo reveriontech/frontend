@@ -11,6 +11,10 @@
     "preview": "vite preview",
     "engine": "concurrently \"npm run server\" \"npm run dev\""
   },
+  "engines": {
+    "npm": "10.9.0",
+    "node": "22.12.0"
+  },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "aos": "^2.3.4",
