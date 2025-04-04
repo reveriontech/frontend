@@ -161,7 +161,7 @@ const ChatWidget = () => {
   const handleAPICall = async (input) => {
     try {
       const response = await axios.post(
-        'http://localhost:3500/chat',
+        `${import.meta.env.VITE_API_BASE_URL}/chat`,
         { prompt: input },
         { headers: { 'Content-Type': 'application/json' } }
       );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaTimes, FaEnvelope, FaLock, FaUser, FaFacebookF, FaTwitter, FaGoogle } from 'react-icons/fa';
 import { useAuth } from '../../context/AuthContext';
+import AuthFunctions from '../../assets/functions/AuthFunctions';
 
 // Login and Signup Modal Component
 const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
@@ -10,6 +11,14 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+
+  const {
+        navigate,
+        isGoogleSigningUp,
+        setIsGoogleSigningUp,
+        handleGoogleSignUp,
+        errors
+  } = AuthFunctions()
   
   // Reset form when closed
   useEffect(() => {
@@ -166,7 +175,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
               <button 
                 type="button"
                 className="social-button google"
-                onClick={() => handleSocialLogin('Google')}
+                onClick={handleGoogleSignUp}
               >
                 <FaGoogle />
               </button>
