@@ -17,4 +17,4 @@ const MobileMenuButton = ({ isOpen, toggleMenu }) => {
   );
 };
 
-export default MobileMenuButton;
+export default MobileMenuButton
