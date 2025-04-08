@@ -19,6 +19,7 @@ const Pricing = () => {
       id: 1,
       name: "Starter Package",
       isHighlighted: false,
+      tagline: "Essential foundation for new ventures",
       benefits: [
         {text: "Perfect for small businesses and startups", icon: "fa-bullseye"},
         {text: "Essential features to establish your digital presence", icon: "fa-globe"},
@@ -31,6 +32,7 @@ const Pricing = () => {
       id: 2,
       name: "Growth",
       isHighlighted: true,
+      tagline: "Accelerate your business expansion",
       benefits: [
         {text: "Ideal for expanding businesses with growing needs", icon: "fa-expand-arrows-alt"},
         {text: "Advanced features to scale your operations", icon: "fa-cogs"},
@@ -44,6 +46,7 @@ const Pricing = () => {
       id: 3,
       name: "Enterprise",
       isHighlighted: false,
+      tagline: "Enterprise-grade solutions for complex needs",
       benefits: [
         {text: "Tailored solutions for large organizations", icon: "fa-puzzle-piece"},
         {text: "Custom feature development to match your workflow", icon: "fa-code"},
@@ -73,86 +76,109 @@ const Pricing = () => {
           </div>
         </div>
 
-        <div className="row align-items-stretch mt-5" data-aos="fade-up">
+        <div className="row mt-5" data-aos="fade-up">
           {pricingPlans.map(plan => (
             <div 
-              className="col-lg-4 col-md-6 p-lg-0 mt-4" 
+              className="col-lg-4 col-md-4 mb-4" 
               key={plan.id}
             >
-              <div 
-                className={`pricing-table border rounded bg-white text-center`}
-                style={{
-                  height: "100%",
-                  minHeight: "480px"
-                }}
-              >
-                <h6 
-                  className="pricing-plan rounded-top text-uppercase text-white p-2 mb-0"
-                  style={{
-                    backgroundColor: plan.id === 2 ? "#f7b924" : "#0d6efd",
-                    fontSize: "0.9rem"
+              <div className="card text-center h-100 border-0 overflow-hidden shadow-sm">
+                <div 
+                  className="position-relative"
+                  style={{ 
+                    height: '130px',
+                    background: `linear-gradient(to right, rgba(240, 240, 240, 0.8), ${plan.id === 2 ? '#f7b924' : '#0d6efd'} 80%)`,
+                    overflow: 'hidden',
+                    borderBottom: '1px solid rgba(0,0,0,0.1)'
                   }}
                 >
-                  {plan.name}
-                </h6>
-                <div 
-                  className="pricing-features py-3 px-3" 
-                  style={{display: "flex", flexDirection: "column", flex: 1}}
-                >
-                  <div className="mb-3 text-center">
-                    <i 
-                      className={`${
-                        plan.id === 1 ? "fas fa-rocket" : 
-                        plan.id === 2 ? "fas fa-chart-line" : 
-                        "fas fa-building"
-                      } fa-2x mb-2`}
-                      style={{color: plan.id === 2 ? "#f7b924" : "#0d6efd"}}
-                    ></i>
-                    <p className="text-muted">
-                      {plan.id === 1 ? "Essential foundation for new ventures" : 
-                      plan.id === 2 ? "Accelerate your business expansion" : 
-                      "Enterprise-grade solutions for complex needs"}
-                    </p>
+                  {plan.id === 2 && (
+                    <div 
+                      className="recommended-badge" 
+                      style={{
+                        position: 'absolute',
+                        top: '10px',
+                        right: '10px',
+                        backgroundColor: '#dc3545',
+                        color: 'white',
+                        padding: '3px 12px',
+                        borderRadius: '20px',
+                        fontSize: '0.7rem',
+                        fontWeight: 'bold',
+                        zIndex: 2,
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                      }}
+                    >
+                      RECOMMENDED
+                    </div>
+                  )}
+                  
+                  <div className="row h-100 g-0">
+                    <div className="col-5 position-relative">
+                      <img 
+                        src={
+                          plan.id === 1 ? "/images/39 Astronaut jumping happy.png" : 
+                          plan.id === 2 ? "/images/14 Astronaut typing with fly.png" : 
+                          "/images/27 Astronaut ride a rocket.png"
+                        }
+                        alt={`${plan.name} illustration`} 
+                        className="position-absolute"
+                        style={{ 
+                          maxHeight: '150px',
+                          bottom: '-20px',
+                          left: '5px',
+                          filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.1))'
+                        }}
+                      />
+                    </div>
+                    <div className="col-7 text-start d-flex flex-column justify-content-center pe-3">
+                      <h5 className="mb-1 text-uppercase text-white fw-bold">{plan.name}</h5>
+                      <p className="mb-0 small text-white opacity-90">{plan.tagline}</p>
+                    </div>
                   </div>
+                </div>
+                
+                <div className="card-body d-flex flex-column p-4">
                   <ul className="list-unstyled text-left" style={{flex: 1}}>
                     {plan.benefits.map((benefit, index) => (
                       <li className={index > 0 ? "border-top pt-2 mt-2" : ""} key={index}>
                         <div className="d-flex align-items-start">
-                          <div className="icon-container" style={{minWidth: "30px"}}>
-                            <i className={`fas ${benefit.icon}`} style={{color: plan.id === 2 ? "#f7b924" : "#0d6efd"}}></i>
+                          <div className="icon-container" style={{minWidth: "24px", marginTop: "3px"}}>
+                            <i className="fas fa-check-circle" style={{
+                              color: plan.id === 2 ? "#f7b924" : "#0d6efd",
+                              fontSize: "16px"
+                            }}></i>
                           </div>
-                          <span className="ml-2">{benefit.text}</span>
+                          <span className="ms-2">{benefit.text}</span>
                         </div>
                       </li>
                     ))}
-                    {/* Add extra empty space to shorter lists to maintain consistent height */}
                     {plan.id === 1 && (
-                      <>
-                        <li className="border-top pt-3 mt-3 invisible">
-                          <div className="d-flex align-items-start">
-                            <div className="icon-container" style={{minWidth: "30px"}}>
-                              <i className="fas fa-check text-primary"></i>
-                            </div>
-                            <span className="ml-2">Spacer item</span>
+                      <li className="border-top pt-3 mt-3 invisible">
+                        <div className="d-flex align-items-start">
+                          <div className="icon-container" style={{minWidth: "24px"}}>
+                            <i className="fas fa-check-circle"></i>
                           </div>
-                        </li>
-                      </>
+                          <span className="ms-2">Spacer item</span>
+                        </div>
+                      </li>
                     )}
                   </ul>
-                  <div className="mt-3 pt-2">
+                  
+                  <div className="mt-auto pt-3">
                     <a 
                       href={`https://calendly.com/reveriontech?package=${plan.name}`} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="btn btn-outline-primary w-100 py-2"
+                      className={`btn ${plan.id === 2 ? 'btn-warning' : 'btn-outline-primary'} w-100 py-2 rounded-pill`}
                       style={{
-                        backgroundColor: plan.id === 2 ? "#f7b924" : "",
-                        borderColor: plan.id === 2 ? "#f7b924" : "",
-                        color: plan.id === 2 ? "white" : "",
-                        fontSize: "0.9rem"
+                        fontWeight: plan.id === 2 ? 'bold' : 'normal',
+                        fontSize: '0.9rem',
+                        boxShadow: plan.id === 2 ? '0 4px 8px rgba(247, 185, 36, 0.3)' : 'none',
+                        transition: 'all 0.3s ease'
                       }}
                     >
-                      <i className="fas fa-comments mr-2"></i> Book Us A Call
+                      <i className="fas fa-comments me-2"></i> Book Us A Call
                     </a>
                   </div>
                 </div>

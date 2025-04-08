@@ -654,7 +654,7 @@ const Adddate = ({ onDateChange, initialDate }) => {
             position: 'fixed',
             top: `${dropdownPosition.top}px`,
             left: `${dropdownPosition.left}px`,
-            zIndex: 9999
+            zIndex: 9999,
           }}
         >
           <div className="due-date-picker">
