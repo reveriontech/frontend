@@ -161,7 +161,7 @@ const ChatWidget = () => {
   const handleAPICall = async (input) => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/chat`,
+        ` https://chatbot-fawn-ten-62.vercel.app/chat`,
         { prompt: input },
         { headers: { 'Content-Type': 'application/json' } }
       );
