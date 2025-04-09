@@ -139,7 +139,7 @@ const Pricing = () => {
                 </div>
                 
                 <div className="card-body d-flex flex-column p-4">
-                  <ul className="list-unstyled text-left" style={{flex: 1}}>
+                  <ul className="list-unstyled text-start" style={{flex: 1}}>
                     {plan.benefits.map((benefit, index) => (
                       <li className={index > 0 ? "border-top pt-2 mt-2" : ""} key={index}>
                         <div className="d-flex align-items-start">
