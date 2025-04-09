@@ -70,7 +70,7 @@ const Footer = () => {
           <div className="row align-items-center">
             <div className="col-sm-8">
               <div className="text-sm-left">
-                <p className="mb-0">{currentYear} © <span className="text-warning">ReverionTech</span>. Shaping the future of decentralized technology.</p>
+                <p className="mb-0">{currentYear} © <span className="text-warning">Reverion Technologies Co.</span>. Shaping the future of decentralized technology.</p>
               </div>
             </div>
             <div className="col-sm-4 text-sm-end">
