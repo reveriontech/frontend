@@ -418,6 +418,18 @@ p {
   color: #ffffff !important;
 }
 
+.titlePicture {
+  width: 500px;
+  height: auto;
+}
+
+@media screen and (max-width: 360px) {
+  .titlePicture {
+    width: 280px;
+    height: auto;
+  }
+}
+
 .btn-outline-info {
   border: 1px solid #4BA2AA;
   color: #4BA2AA;

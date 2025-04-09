@@ -28,7 +28,7 @@ const Hero = () => {
               <div className="col-lg-8">
                 <div className="title-heading text-center mt-5 pt-4" data-aos="fade-up">
                   <img src="/images/ReverionTechLogo-white.png" alt="Reverion Logo picture" 
-                    style={{ width: '500px', height: 'auto' }}
+                    className='titlePicture'
                   />
                   <p className="para-desc mx-auto text-light" style={{marginTop: '20px'}}>
                     Empower your business with <span className="words-color">Web3</span>, <span className="words-color">GenAI</span>, and <span className="words-color">Scalable</span> digital solutions
