@@ -502,6 +502,18 @@ p {
   color: #ffffff;
 }
 
+.btn-custom1 {
+  background-color: #001ea3 !important;
+  border: 1px solid #001ea3 !important;
+  color: #ffffff !important;
+}
+
+.btn-custom1:hover, .btn-custom1:focus, .btn-custom1:active, .btn-custom1.active, .btn-custom1.focus {
+  background-color: #001ea371 !important;
+  border-color: #001ea371 !important;
+  color: #ffffff !important;
+}
+
 .btn-custom {
   background-color: #EEAF00 !important;
   border: 1px solid #EEAF00 !important;

@@ -27,8 +27,10 @@ const Hero = () => {
             <div className="row justify-content-center">
               <div className="col-lg-8">
                 <div className="title-heading text-center mt-5 pt-4" data-aos="fade-up">
-                  <h1 className="heading text-white mb-3">ReverionTech</h1>
-                  <p className="para-desc mx-auto text-light">
+                  <img src="/images/ReverionTechLogo-white.png" alt="Reverion Logo picture" 
+                    style={{ width: '500px', height: 'auto' }}
+                  />
+                  <p className="para-desc mx-auto text-light" style={{marginTop: '20px'}}>
                     Empower your business with <span className="words-color">Web3</span>, <span className="words-color">GenAI</span>, and <span className="words-color">Scalable</span> digital solutions
                   </p>
                   <div style={{ display: 'flex', justifyContent: 'center', gap: '20px'}}>
@@ -45,7 +47,7 @@ const Hero = () => {
                   <div className="mt-4 pt-2">
                     <a 
                       href="https://forms.clickup.com/9016503780/p/f/8cptvf4-496/BTYBZQ6D05CPYSPJKU/project-intake-form" 
-                      className="btn btn-custom"
+                      className="btn btn-custom1"
                       target="_blank" 
                       rel="noopener noreferrer" 
                     >

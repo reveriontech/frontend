@@ -69,7 +69,7 @@ const ChatWidget = () => {
           setMessages([
             {
               role: 'assistant',
-              content: 'Hello! I\'m your ReverionTech Assistant. How can I help you today?'
+              content: 'Hello! I\'m your ReverionAI Assistant. How can I help you today?'
             }
           ]);
         }
@@ -233,7 +233,7 @@ const ChatWidget = () => {
               <FaRobot />
             </div>
             <div className="mini-chat-user-info">
-              <div className="mini-chat-name">ReverionTech Assistant</div>
+              <div className="mini-chat-name">ReverionAI Assistant</div>
               <div className="mini-chat-status">
                 <span className="mini-status-dot"></span>
                 Online
@@ -247,7 +247,7 @@ const ChatWidget = () => {
           <div className="mini-chat-content">
             {miniMessages.length === 0 ? (
               <div className="mini-chat-message assistant">
-                <span>Hello! I'm your ReverionTech Assistant. How can I help you today?</span>
+                <span>Hello! I'm your ReverionAI Assistant. How can I help you today?</span>
               </div>
             ) : (
               miniMessages.map((msg, index) => (
@@ -325,7 +325,7 @@ const ChatWidget = () => {
                 <FaRobot className="robot-avatar" />
               </div>
               <div className="user-info">
-                <div className="user-name">ReverionTech Assistant</div>
+                <div className="user-name">ReverionAI Assistant</div>
                 <div className="user-status">
                   <span className="status-indicator"></span>
                   Online
