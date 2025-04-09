@@ -31,6 +31,7 @@ const Hero = () => {
                   <p className="para-desc mx-auto text-light">
                     Empower your business with <span className="words-color">Web3</span>, <span className="words-color">GenAI</span>, and <span className="words-color">Scalable</span> digital solutions
                   </p>
+                  <div style={{ display: 'flex', justifyContent: 'center', gap: '20px'}}>
                   <div className="mt-4 pt-2">
                     <a 
                       href="https://forms.clickup.com/9016503780/p/f/8cptvf4-496/BTYBZQ6D05CPYSPJKU/project-intake-form" 
@@ -40,6 +41,17 @@ const Hero = () => {
                     >
                      Start your project
                     </a>
+                  </div>
+                  <div className="mt-4 pt-2">
+                    <a 
+                      href="https://forms.clickup.com/9016503780/p/f/8cptvf4-496/BTYBZQ6D05CPYSPJKU/project-intake-form" 
+                      className="btn btn-custom"
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                    >
+                      Want to talk?
+                    </a>
+                  </div>
                   </div>
                 </div>
               </div>
