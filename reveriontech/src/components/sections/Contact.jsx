@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaPhone, FaFax, FaEnvelope, FaPaperPlane, FaUser } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaPaperPlane, FaUser } from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -85,22 +85,17 @@ const Contact = () => {
 
   const contactItems = [
     {
-      icon: <FaMapMarkerAlt size={24} />,
+      icon: <FaMapMarkerAlt size={35} />,
       title: "OUR MAIN OFFICE",
       content: "SoHo 94 Broadway St\nNew York, NY 10001"
     },
     {
-      icon: <FaPhone size={24} />,
+      icon: <FaPhone size={35} />,
       title: "PHONE NUMBER",
       content: "234-9876-5400\n888-0123-4567 (Toll Free)"
     },
     {
-      icon: <FaFax size={24} />,
-      title: "FAX",
-      content: "1-234-567-8900"
-    },
-    {
-      icon: <FaEnvelope size={24} />,
+      icon: <FaEnvelope size={35} />,
       title: "EMAIL",
       content: "hello@theme.com"
     }
@@ -109,21 +104,22 @@ const Contact = () => {
   return (
     <section style={{ 
       backgroundColor: "#ffffff", 
-      padding: "80px 0 40px",
-      minHeight: "calc(100vh - 120px)"
+      padding: "60px 0 30px",
+      minHeight: "90vh"
     }} id="contact">
       <motion.div 
         className="container"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
+        style={{ maxWidth: "1300px" }}
       >
         <motion.div variants={itemVariants} className="text-center mb-5">
           <h2 style={{ 
-            fontSize: '32px', 
+            fontSize: '42px', 
             fontWeight: '700', 
             color: '#333', 
-            marginBottom: '5px',
+            marginBottom: '10px',
             position: 'relative',
             display: 'inline-block',
             textTransform: 'uppercase',
@@ -131,83 +127,85 @@ const Contact = () => {
           }}>
             CONTACT US
             <div style={{ 
-              height: '4px', 
+              height: '6px', 
               width: '100%', 
               background: '#faa307', 
               position: 'absolute',
-              bottom: '-10px',
+              bottom: '-12px',
               left: '0',
               boxShadow: '0 3px 8px rgba(250, 163, 7, 0.3)'
             }}></div>
           </h2>
           <p style={{ 
-            maxWidth: '700px', 
-            margin: '25px auto 0', 
+            maxWidth: '900px', 
+            margin: '30px auto 25px', 
             color: '#666',
-            fontSize: '16px',
+            fontSize: '20px',
             lineHeight: '1.7'
           }}>
             We're here to help and answer any questions you might have. We look forward to hearing from you!
           </p>
         </motion.div>
 
-        <div className="row justify-content-center" style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <div className="col-lg-6">
+        <div className="row justify-content-center" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+          <div className="col-lg-5" style={{ paddingRight: '25px' }}>
             <div className="row">
               {contactItems.map((item, index) => (
                 <motion.div 
                   key={index}
-                  className="col-md-6 mb-4"
+                  className="col-md-12 mb-5"
                   variants={itemVariants}
                 >
                   <div 
                     style={{ 
                       background: '#fff', 
-                      borderRadius: '4px', 
-                      padding: '30px 20px',
-                      height: '100%',
-                      textAlign: 'center',
-                      boxShadow: '0 5px 15px rgba(0,0,0,0.05), 0 3px 8px rgba(250, 163, 7, 0.07)',
+                      borderRadius: '10px', 
+                      padding: '30px 28px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      boxShadow: '0 8px 20px rgba(0,0,0,0.06), 0 4px 12px rgba(250, 163, 7, 0.08)',
                       border: '1px solid #f5f5f5',
-                      transition: 'all 0.2s ease'
+                      transition: 'all 0.3s ease',
+                      transform: 'scale(1.05)'
                     }}
                   >
                     <motion.div 
                       style={{ 
                         color: '#fff', 
-                        marginBottom: '15px',
                         backgroundColor: '#faa307',
-                        width: '60px',
-                        height: '60px',
+                        width: '85px',
+                        height: '85px',
                         borderRadius: '50%',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        margin: '0 auto 20px',
-                        boxShadow: '0 5px 15px rgba(250, 163, 7, 0.25)'
+                        marginRight: '25px',
+                        boxShadow: '0 6px 18px rgba(250, 163, 7, 0.3)'
                       }}
                       whileHover={{ scale: 1.05 }}
                     >
                       {item.icon}
                     </motion.div>
-                    <h6 style={{ 
-                      fontSize: '14px', 
-                      fontWeight: '600', 
-                      marginBottom: '10px', 
-                      color: '#333',
-                      textTransform: 'uppercase'
-                    }}>
-                      {item.title}
-                    </h6>
-                    <p style={{ 
-                      margin: 0, 
-                      color: '#666', 
-                      whiteSpace: 'pre-line', 
-                      fontSize: '14px',
-                      lineHeight: '1.6'
-                    }}>
-                      {item.content}
-                    </p>
+                    <div>
+                      <h6 style={{ 
+                        fontSize: '18px', 
+                        fontWeight: '600', 
+                        marginBottom: '10px', 
+                        color: '#333',
+                        textTransform: 'uppercase'
+                      }}>
+                        {item.title}
+                      </h6>
+                      <p style={{ 
+                        margin: 0, 
+                        color: '#666', 
+                        whiteSpace: 'pre-line', 
+                        fontSize: '17px',
+                        lineHeight: '1.7'
+                      }}>
+                        {item.content}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -215,24 +213,27 @@ const Contact = () => {
           </div>
           
           <motion.div 
-            className="col-lg-6"
+            className="col-lg-7"
             variants={itemVariants}
+            style={{ paddingLeft: '25px' }}
           >
             <motion.div 
-              className="card border-0 p-4"
+              className="card border-0 p-5"
               style={{
-                boxShadow: '0 8px 20px rgba(0,0,0,0.05), 0 6px 12px rgba(250, 163, 7, 0.08)',
-                borderRadius: '4px',
-                marginBottom: '30px'
+                boxShadow: '0 10px 25px rgba(0,0,0,0.06), 0 8px 16px rgba(250, 163, 7, 0.09)',
+                borderRadius: '10px',
+                marginBottom: '20px',
+                transform: 'scale(1.05)'
               }}
             >
               <div className="card-body p-2">
                 <h3 style={{ 
-                  fontSize: '22px', 
+                  fontSize: '28px', 
                   textAlign: 'center', 
-                  marginBottom: '25px',
+                  marginBottom: '30px',
                   color: '#333',
-                  position: 'relative'
+                  position: 'relative',
+                  fontWeight: '600'
                 }}>
                   SEND A MESSAGE
                 </h3>
@@ -243,16 +244,17 @@ const Contact = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
+                    style={{ fontSize: '16px' }}
                   >
                     {formStatus.message}
                   </motion.div>
                 )}
                 
                 <form onSubmit={handleSubmit}>
-                  <div className="mb-3">
-                    <div className="input-group" style={{ boxShadow: '0 2px 6px rgba(250, 163, 7, 0.15)' }}>
-                      <span className="input-group-text" style={{ background: '#faa307', border: 'none' }}>
-                        <FaUser className="text-white" />
+                  <div className="mb-4">
+                    <div className="input-group" style={{ boxShadow: '0 3px 8px rgba(250, 163, 7, 0.15)' }}>
+                      <span className="input-group-text" style={{ background: '#faa307', border: 'none', padding: '0 18px' }}>
+                        <FaUser className="text-white" size={18} />
                       </span>
                       <input 
                         type="text" 
@@ -262,18 +264,18 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="Enter your Name"
                         style={{ 
-                          padding: '12px 15px',
+                          padding: '16px 18px',
                           border: '1px solid #eee',
-                          fontSize: '14px'
+                          fontSize: '17px'
                         }}
                       />
                     </div>
                   </div>
                   
-                  <div className="mb-3">
-                    <div className="input-group" style={{ boxShadow: '0 2px 6px rgba(250, 163, 7, 0.15)' }}>
-                      <span className="input-group-text" style={{ background: '#faa307', border: 'none' }}>
-                        <FaEnvelope className="text-white" />
+                  <div className="mb-4">
+                    <div className="input-group" style={{ boxShadow: '0 3px 8px rgba(250, 163, 7, 0.15)' }}>
+                      <span className="input-group-text" style={{ background: '#faa307', border: 'none', padding: '0 18px' }}>
+                        <FaEnvelope className="text-white" size={18} />
                       </span>
                       <input 
                         type="email" 
@@ -283,15 +285,15 @@ const Contact = () => {
                         onChange={handleChange}
                         placeholder="Enter a valid email address"
                         style={{ 
-                          padding: '12px 15px',
+                          padding: '16px 18px',
                           border: '1px solid #eee',
-                          fontSize: '14px'
+                          fontSize: '17px'
                         }}
                       />
                     </div>
                   </div>
                   
-                  <div className="mb-4">
+                  <div className="mb-5">
                     <textarea 
                       name="message"
                       className="form-control"
@@ -300,11 +302,11 @@ const Contact = () => {
                       placeholder="Your message"
                       rows="5"
                       style={{ 
-                        padding: '12px 15px',
+                        padding: '16px 18px',
                         border: '1px solid #eee',
-                        fontSize: '14px',
+                        fontSize: '17px',
                         resize: 'none',
-                        boxShadow: '0 2px 6px rgba(250, 163, 7, 0.15)'
+                        boxShadow: '0 3px 8px rgba(250, 163, 7, 0.15)'
                       }}
                     ></textarea>
                   </div>
@@ -318,22 +320,22 @@ const Contact = () => {
                         backgroundColor: '#faa307',
                         color: '#fff',
                         border: 'none',
-                        padding: '10px 30px',
-                        fontSize: '14px',
+                        padding: '14px 40px',
+                        fontSize: '17px',
                         fontWeight: '600',
-                        borderRadius: '4px',
+                        borderRadius: '8px',
                         textTransform: 'uppercase',
                         letterSpacing: '0.5px',
-                        boxShadow: '0 4px 12px rgba(250, 163, 7, 0.3)'
+                        boxShadow: '0 5px 15px rgba(250, 163, 7, 0.35)'
                       }}
                       whileHover={{ 
                         backgroundColor: '#f99500',
-                        boxShadow: '0 6px 15px rgba(250, 163, 7, 0.4)' 
+                        boxShadow: '0 7px 18px rgba(250, 163, 7, 0.45)' 
                       }}
                     >
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px' }}>
                         SUBMIT MESSAGE
-                        <FaPaperPlane size={12} />
+                        <FaPaperPlane size={16} />
                       </div>
                     </motion.button>
                   </div>
@@ -342,17 +344,6 @@ const Contact = () => {
             </motion.div>
           </motion.div>
         </div>
-        
-        <motion.div 
-          className="text-center mt-4"
-          variants={itemVariants}
-          style={{
-            color: '#888',
-            fontSize: '13px',
-            paddingTop: '20px'
-          }}
-        >
-        </motion.div>
       </motion.div>
     </section>
   );

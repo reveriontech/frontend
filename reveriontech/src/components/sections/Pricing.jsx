@@ -118,7 +118,7 @@ const Pricing = () => {
                       <img 
                         src={
                           plan.id === 1 ? "/images/39 Astronaut jumping happy.png" : 
-                          plan.id === 2 ? "/images/14 Astronaut typing with fly.png" : 
+                          plan.id === 2 ? "/images/14 Astronaut typing with fly1.png" : 
                           "/images/27 Astronaut ride a rocket.png"
                         }
                         alt={`${plan.name} illustration`} 

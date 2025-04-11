@@ -472,8 +472,7 @@ const Tasks = () => {
       {/* Empty state when no tasks */}
       {tasks.length === 0 && (
         <div className="empty-state">
-          <div className="empty-state-icon">📋</div>
-          <div className="empty-state-message">No tasks yet</div>
+          <div className="empty-state-message">No tasks yet 📋</div>
           <div className="empty-state-description">Get started by adding your first task</div>
           <button 
             className="empty-state-button"
@@ -495,13 +494,7 @@ const Tasks = () => {
           <div className="task-modal">
             <div className="task-modal-tabs">
               <button className="task-modal-tab active">Task</button>
-              <button className="task-modal-tab">Doc</button>
-              <button className="task-modal-tab">Reminder</button>
-              <button className="task-modal-tab">Chat</button>
-              <button className="task-modal-tab">Whiteboard</button>
-              <button className="task-modal-tab">Dashboard</button>
               <div className="task-modal-actions">
-                <button className="task-modal-action">↓</button>
                 <button className="task-modal-close" onClick={() => setShowAddTaskModal(false)}>×</button>
               </div>
             </div>
@@ -583,11 +576,6 @@ const Tasks = () => {
                 </div>
               )}
 
-              <div className="task-ai-btn">
-                <span className="task-ai-icon">💫</span>
-                <span>Write with AI</span>
-              </div>
-
               <div className="task-options">
                 <div className="task-status">
                   <button 
@@ -618,16 +606,6 @@ const Tasks = () => {
                 />
                 
                
-              </div>
-
-              <div className="task-custom-fields">
-                <div className="task-custom-header">
-                  <span>Custom Fields</span>
-                </div>
-                <div className="task-custom-content">
-                  <button className="task-show-fields-btn">Show custom fields</button>
-                  <button className="task-new-field-btn">+ Create new field</button>
-                </div>
               </div>
             </div>
 
