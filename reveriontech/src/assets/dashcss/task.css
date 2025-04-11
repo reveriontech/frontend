@@ -102,10 +102,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 20px;
+  padding: 12px 16px;
+  background-color: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
   cursor: pointer;
-  border-bottom: 1px solid #eee;
   user-select: none;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
 }
 
 .section-title1 {
@@ -138,19 +146,24 @@
 }
 
 .section-name {
-  font-weight: 600;
   font-size: 14px;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .section-count {
-  background-color: #f0f0f0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
   border-radius: 10px;
-  padding: 1px 8px;
+  background-color: #e5e7eb;
+  color: #4b5563;
   font-size: 12px;
-  color: #555;
+  font-weight: 500;
+  padding: 0 6px;
 }
-
 .section-actions {
   display: flex;
   align-items: center;
@@ -170,43 +183,148 @@
 }
 
 .section-toggle {
-  color: #999;
+  color: #9ca3af;
   font-size: 10px;
 }
 
 /* Table styles */
 .section-content {
-  border-bottom: 1px solid #eee;
+  padding: 0;
 }
 
 .task-table {
   width: 100%;
-  border-collapse: collapse;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.task-table thead {
+  background-color: #f9fafb;
 }
 
 .task-table th {
-  padding: 10px 16px;
-  text-align: left;
-  color: #666;
-  font-weight: 500;
+  padding: 12px 16px;
+  font-weight: 600;
   font-size: 13px;
-  border-bottom: 1px solid #eee;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6b7280;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.task-table {
+  width: 100%;
+  table-layout: fixed; /* This is crucial for fixed column widths */
+  border-collapse: collapse;
+}
+
+.task-table th, .task-table td {
+  padding: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Define specific widths for each column */
+.task-table th:nth-child(1),
+.task-table td:nth-child(1) {
+  width: 30%;
+}
+
+.task-table th:nth-child(2),
+.task-table td:nth-child(2) {
+  width: 12%;
+}
+
+.task-table th:nth-child(3),
+.task-table td:nth-child(3) {
+  width: 15%;
+}
+.task-table th:nth-child(4),
+.task-table td:nth-child(4) {
+  width: 15%; /* Priority column */
+}
+
+.task-table th:nth-child(5),
+.task-table td:nth-child(5) {
+  width: 15%; /* Status column */
+}
+
+.task-table th:nth-child(6),
+.task-table td:nth-child(6) {
+  width: 13%;
 }
 
 .task-table td {
   padding: 12px 16px;
-  border-bottom: 1px solid #f5f5f5;
-  vertical-align: middle;
+  font-size: 14px;
+  color: #374151;
+  border-bottom: 1px solid #f3f4f6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.task-row:hover {
-  background-color: #f9f9f9;
+/* Row hover effect */
+.task-table tr.task-row:hover {
+  background-color: #f9fafb;
+}
+
+.task-table tr:last-child td {
+  border-bottom: none;
 }
 
 .task-name-content {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.task-name-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+
+/* You can add a tooltip for long names */
+.task-name-tooltip {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.task-name-tooltip:hover .task-name-tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.task-name-tooltip-text {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: normal;
+  max-width: 200px;
 }
 
 .task-status-indicator {
@@ -279,22 +397,24 @@
 }
 
 .section-footer {
-  padding: 10px 16px;
+  padding: 8px 16px;
+  background-color: #f9fafb;
+  border-top: 1px solid #f3f4f6;
 }
-
 .section-add-task-footer {
   background: none;
   border: none;
-  color: #666;
-  cursor: pointer;
+  color: #6b7280;
   font-size: 13px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
 }
 
 .section-add-task-footer:hover {
-  color: #333;
+  background-color: #e5e7eb;
+  color: #4b5563;
 }
 
 .no-tasks-message {
@@ -1660,4 +1780,10 @@ position: relative;
 .task-type-dropdown,
 .status-options-dropdown {
 z-index: 1002;
+}
+
+@media screen and (max-width: 360px) {
+  .img-container {
+    margin-top: 50px;
+  }
 }

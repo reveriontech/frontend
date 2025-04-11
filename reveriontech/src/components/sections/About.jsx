@@ -103,7 +103,7 @@ const WhyChooseSection = () => {
                 solutions, or transform your data into actionable insights, Reverion Tech has 
                 the expertise, experience, and enthusiasm to make it happen.
               </p>
-              <div className="d-flex gap-3">
+              <div className="d-flex gap-3 buttonContainer">
                 <motion.a 
                   href="https://calendly.com/reveriontech?package=${plan.name}"
                   className="btn btn-primary"
@@ -129,7 +129,7 @@ const WhyChooseSection = () => {
           </div>
 
           {/* Right Column - Image */}
-          <div className="col-lg-5">
+          <div className="col-lg-5 img-container">
             <motion.div 
               className="position-relative rounded overflow-hidden"
               initial={{ opacity: 0, x: 20 }}

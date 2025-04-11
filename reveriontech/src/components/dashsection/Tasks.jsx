@@ -369,7 +369,12 @@ const Tasks = () => {
                       <td className="task-name">
                         <div className="task-name-content">
                           <span className={`task-status-indicator ${statusClass}`}>{statusIcon}</span>
-                          <span>{task.name}</span>
+                          <div className="task-name-tooltip">
+                            <span className="task-name-text">{task.name}</span>
+                            {task.name.length > 20 && (
+                              <span className="task-name-tooltip-text">{task.name}</span>
+                            )}
+                          </div>
                           {task.description && <span className="task-description-indicator">📝</span>}
                         </div>
                       </td>
