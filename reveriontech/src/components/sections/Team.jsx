@@ -5,65 +5,113 @@ const Team = () => {
   // State to track which team member is being hovered
   const [hoveredMember, setHoveredMember] = useState(null);
 
-  // Team members data
+  // Team members data with specific social media links for each member
   const teamMembers = [
     {
       id: 1,
       name: "Rod A.",
       position: "Founder",
-      image: "images/profile/profile1.jpg"
+      image: "images/profile/profile1.jpg",
+      socialLinks: {
+        facebook: "https://facebook.com/rod.a", // replace with actual link
+        linkedin: "https://linkedin.com/in/rod.a", // replace with actual link
+        youtube: "https://youtube.com/c/rod.a", // replace with actual link
+        instagram: "https://instagram.com/rod.a" // replace with actual link
+      }
     },
     {
       id: 2,
       name: "Mhok S.",
       position: "CTO",
-      image: "images/profile/profile2.jpg"
+      image: "images/profile/profile2.jpg",
+      socialLinks: {
+        facebook: "https://facebook.com/mhok.s", // replace with actual link
+        linkedin: "https://linkedin.com/in/mhok.s", // replace with actual link
+        youtube: "https://youtube.com/c/mhok.s", // replace with actual link
+        instagram: "https://instagram.com/mhok.s" // replace with actual link
+      }
     },
     {
       id: 3,
       name: "Darian S",
       position: "Business Development",
-      image: "images/profile/profile3.jpg"
+      image: "images/profile/profile3.jpg",
+      socialLinks: {
+        facebook: "https://facebook.com/darian.s", // replace with actual link
+        linkedin: "https://linkedin.com/in/darian.s", // replace with actual link
+        youtube: "https://youtube.com/c/darian.s", // replace with actual link
+        instagram: "https://instagram.com/darian.s" // replace with actual link
+      }
     },
     {
       id: 4,
       name: "Jhon Rexey",
       position: "Frontend Developer",
-      image: "images/profile/profile4.jpg"
+      image: "images/profile/profile4.jpg",
+      socialLinks: {
+        facebook: "https://facebook.com/jhon.rexey", // replace with actual link
+        linkedin: "https://linkedin.com/in/jhon.rexey", // replace with actual link
+        youtube: "https://youtube.com/c/jhon.rexey", // replace with actual link
+        instagram: "https://instagram.com/jhon.rexey" // replace with actual link
+      }
     },
     {
       id: 5,
       name: "Kent A.",
       position: "Backend Developer",
-      image: "images/profile/profile5.jpg"
+      image: "images/profile/profile5.jpg",
+      socialLinks: {
+        facebook: "https://facebook.com/kent.a", // replace with actual link
+        linkedin: "https://linkedin.com/in/kent.a", // replace with actual link
+        youtube: "https://youtube.com/c/kent.a", // replace with actual link
+        instagram: "https://instagram.com/kent.a" // replace with actual link
+      }
     },
     {
       id: 6,
       name: "Racker Joy S.",
       position: "Researcher",
-      image: "images/profile/profile6.jpg"
+      image: "images/profile/profile6.jpg",
+      socialLinks: {
+        facebook: "https://facebook.com/racker.joy", // replace with actual link
+        linkedin: "https://linkedin.com/in/racker.joy", // replace with actual link
+        youtube: "https://youtube.com/c/racker.joy", // replace with actual link
+        instagram: "https://instagram.com/racker.joy" // replace with actual link
+      }
     },
     {
       id: 7,
       name: "WhiteFish",
       position: "Lead Creatives",
-      image: "images/profile/profile7.jpg"
+      image: "images/profile/profile7.jpg",
+      socialLinks: {
+        facebook: "https://facebook.com/whitefish", // replace with actual link
+        linkedin: "https://linkedin.com/in/whitefish", // replace with actual link
+        youtube: "https://youtube.com/c/whitefish", // replace with actual link
+        instagram: "https://instagram.com/whitefish" // replace with actual link
+      }
     },
     {
       id: 8,
       name: "Jennifer C.",
       position: "CFO",
-      image: "images/profile/profile8.jpg"
+      image: "images/profile/profile8.jpg",
+      socialLinks: {
+        facebook: "https://facebook.com/jennifer.c", // replace with actual link
+        linkedin: "https://linkedin.com/in/jennifer.c", // replace with actual link
+        youtube: "https://youtube.com/c/jennifer.c", // replace with actual link
+        instagram: "https://instagram.com/jennifer.c" // replace with actual link
+      }
     }
   ];
 
-  // Social media links with react-icons
-  const socialLinks = [
-    { icon: <FaFacebookF />, title: "Facebook", url: "#" },
-    { icon: <FaLinkedinIn />, title: "Linkedin", url: "#" },
-    { icon: <FaYoutube />, title: "Youtube", url: "#" },
-    { icon: <FaInstagram />, title: "Instagram", url: "#" }
-  ];
+  // Social media icons mapping
+  const socialIcons = {
+    facebook: <FaFacebookF />,
+    linkedin: <FaLinkedinIn />,
+    youtube: <FaYoutube />,
+    instagram: <FaInstagram />
+  };
 
   // Mouse event handlers
   const handleMouseEnter = (memberId) => {
@@ -109,17 +157,49 @@ const Team = () => {
                   <h6 className="designation text-muted font-weight-normal">{member.position}</h6>
                   <br />
                   <ul className="list-unstyled social-icon mb-0 mt-4">
-                    {socialLinks.map((social, index) => (
-                      <li className="list-inline-item" key={index}>
-                        <a 
-                          href={social.url} 
-                          className={`rounded-circle social-link ${hoveredMember === member.id ? 'social-hover' : ''}`} 
-                          title={social.title}
-                        >
-                          <i>{social.icon}</i>
-                        </a>
-                      </li>
-                    ))}
+                    {/* Facebook */}
+                    <li className="list-inline-item">
+                      <a 
+                        href={member.socialLinks.facebook} 
+                        className={`rounded-circle social-link ${hoveredMember === member.id ? 'social-hover' : ''}`} 
+                        title="Facebook"
+                      >
+                        <i>{socialIcons.facebook}</i>
+                      </a>
+                    </li>
+                    
+                    {/* LinkedIn */}
+                    <li className="list-inline-item">
+                      <a 
+                        href={member.socialLinks.linkedin} 
+                        className={`rounded-circle social-link ${hoveredMember === member.id ? 'social-hover' : ''}`} 
+                        title="LinkedIn"
+                      >
+                        <i>{socialIcons.linkedin}</i>
+                      </a>
+                    </li>
+                    
+                    {/* YouTube */}
+                    <li className="list-inline-item">
+                      <a 
+                        href={member.socialLinks.youtube} 
+                        className={`rounded-circle social-link ${hoveredMember === member.id ? 'social-hover' : ''}`} 
+                        title="YouTube"
+                      >
+                        <i>{socialIcons.youtube}</i>
+                      </a>
+                    </li>
+                    
+                    {/* Instagram */}
+                    <li className="list-inline-item">
+                      <a 
+                        href={member.socialLinks.instagram} 
+                        className={`rounded-circle social-link ${hoveredMember === member.id ? 'social-hover' : ''}`} 
+                        title="Instagram"
+                      >
+                        <i>{socialIcons.instagram}</i>
+                      </a>
+                    </li>
                   </ul>
                 </div>
               </div>
