@@ -24,7 +24,7 @@ const Cta = () => {
       <div className="container">
         <div className="row justify-content-center text-center">
           <div className="col-8" data-aos="fade-up">           
-            <div className="section-title">
+            <div>
               <h4 className="title text-uppercase text-white mb-4">Partner with Reverion Tech</h4>
               <p className="text-white-50 mx-auto para-desc mb-0">Create high-performance websites designed for success!</p>
             </div>        

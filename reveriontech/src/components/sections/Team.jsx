@@ -79,7 +79,7 @@ const Team = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12 text-center">
-            <div className="section-title" data-aos="fade-up">
+            <div data-aos="fade-up">
               <h4 className="title text-uppercase mb-4">Our Team</h4>
               <p className="text-muted mx-auto para-desc mb-0">
                 Launch your project and leverage our expertise in designing and 

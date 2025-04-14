@@ -85,7 +85,7 @@ const Services = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12 text-center">
-            <div className="section-title" data-aos="fade-up">
+            <div data-aos="fade-up">
               <h4 className="title text-uppercase mb-4">What We Offer ?</h4>
               <p className="text-muted mx-auto para-desc mb-0">
                 Empower your business with innovative, scalable, and future-ready solutions. 

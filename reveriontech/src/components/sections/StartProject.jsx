@@ -24,7 +24,7 @@ const StartProject = () => {
       <div className="container">
         <div className="row justify-content-center text-center">
           <div className="col-lg-8" data-aos="fade-up">
-            <div className="section-title">
+            <div>
               <h4 className="title text-uppercase text-white mb-4">Ready to Start Your Project?</h4>
               <p className="text-white-50 mx-auto para-desc mb-4">Our team is here to help you every step of the way.</p>
             </div>

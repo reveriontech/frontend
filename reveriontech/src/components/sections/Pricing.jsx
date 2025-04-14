@@ -63,7 +63,7 @@ const Pricing = () => {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12 text-center">
-            <div className="section-title" data-aos="fade-up">
+            <div data-aos="fade-up">
               <div className="mb-4">
                 <i className="fas fa-layer-group fa-3x text-primary"></i>
               </div>
