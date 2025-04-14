@@ -109,18 +109,7 @@
   user-select: none;
 }
 
-.section-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
-}
 
-.section-title1 {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
 
 .section-icon {
   display: flex;

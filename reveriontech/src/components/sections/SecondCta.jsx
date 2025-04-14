@@ -32,7 +32,7 @@ const SecondCta = () => {
       <div className="container py-4">
         <div className="row justify-content-center">
           <div className="col-10 text-center">
-            <div className="section-title" data-aos="fade-up">
+            <div className="section-title1" data-aos="fade-up">
               <h4 className="title text-white text-uppercase mb-3">"We refine every detail."</h4>
               <p className="text-white-50 mx-auto para-desc">Shaping the future of decentralized technology</p>
             </div>

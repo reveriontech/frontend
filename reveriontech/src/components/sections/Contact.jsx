@@ -166,7 +166,7 @@ const Contact = () => {
                       boxShadow: '0 8px 20px rgba(0,0,0,0.06), 0 4px 12px rgba(250, 163, 7, 0.08)',
                       border: '1px solid #f5f5f5',
                       transition: 'all 0.3s ease',
-                      transform: 'scale(1.05)'
+                      transform: 'scale(0.9)'
                     }}
                   >
                     <motion.div 
@@ -182,7 +182,7 @@ const Contact = () => {
                         marginRight: '25px',
                         boxShadow: '0 6px 18px rgba(250, 163, 7, 0.3)'
                       }}
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: 0.9 }}
                     >
                       {item.icon}
                     </motion.div>
@@ -223,7 +223,7 @@ const Contact = () => {
                 boxShadow: '0 10px 25px rgba(0,0,0,0.06), 0 8px 16px rgba(250, 163, 7, 0.09)',
                 borderRadius: '10px',
                 marginBottom: '20px',
-                transform: 'scale(1.05)'
+                transform: 'scale(0.9)'
               }}
             >
               <div className="card-body p-2">
