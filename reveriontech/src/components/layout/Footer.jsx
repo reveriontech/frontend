@@ -35,10 +35,10 @@ const Footer = () => {
             <div className="col-lg-2 col-md-3 mt-4 pt-2 mt-lg-0 pt-lg-0">
               <h4 className="text-light text-uppercase footer-head">LINKS</h4>
               <ul className="list-unstyled footer-list mt-4 mb-0">
-                <li className="mb-2"><a href="#" className="text-foot"><FaChevronRight className="me-2" /> Aboutus</a></li>
-                <li className="mb-2"><a href="#" className="text-foot"><FaChevronRight className="me-2" /> Services</a></li>
-                <li className="mb-2"><a href="#" className="text-foot"><FaChevronRight className="me-2" /> Team</a></li>
-                <li className="mb-2"><a href="#" className="text-foot"><FaChevronRight className="me-2" /> Pricing</a></li>
+                <li className="mb-2"><a href="#about" className="text-foot"><FaChevronRight className="me-2" /> Aboutus</a></li>
+                <li className="mb-2"><a href="#offer" className="text-foot"><FaChevronRight className="me-2" /> Services</a></li>
+                <li className="mb-2"><a href="#team" className="text-foot"><FaChevronRight className="me-2" /> Team</a></li>
+                <li className="mb-2"><a href="#pricing" className="text-foot"><FaChevronRight className="me-2" /> Pricing</a></li>
               </ul>
             </div>
             
@@ -70,7 +70,7 @@ const Footer = () => {
           <div className="row align-items-center">
             <div className="col-sm-8">
               <div className="text-sm-left">
-                <p className="mb-0">{currentYear} © <span className="text-warning">Reverion Technologies Co.</span>. Shaping the future of decentralized technology.</p>
+                <p className="mb-0">{currentYear} © <span className="text-warning">Reverion Technologies Co.</span> Shaping the future of decentralized technology.</p>
               </div>
             </div>
             <div className="col-sm-4 text-sm-end">
