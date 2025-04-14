@@ -4,7 +4,6 @@ import { useResponsiveNavigation, useScreenSize } from '../utils/responsive-util
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../assets/css/custom.css';
 
-// Import dashboard components
 import Dashboard from '../components/dashsection/Dashboard';
 import Tasks from '../components/dashsection/Tasks';
 import Team from '../components/dashsection/Team';
@@ -113,10 +112,7 @@ const Portal = () => {
 
   return (
     <div className="portal-wrapper">
-      {/* Mobile Menu Toggle Button - Updated to use the MobileMenuButton component */}
       <MobileMenuButton isOpen={isSidebarOpen} toggleMenu={toggleSidebar} />
-
-      {/* Overlay for sidebar - Updated to show on screens up to 1920px */}
       {isSidebarOpen && 
         <div className="overlay d-xxl-none show" onClick={closeSidebar}></div>
       }

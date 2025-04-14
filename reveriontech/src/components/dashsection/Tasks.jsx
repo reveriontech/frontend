@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '../../assets/dashcss/task.css';
 import AddDate from './taskcomponent/Adddate';
 import Priority from '../dashsection/taskcomponent/Priority';
+import { FiPaperclip, FiCircle, FiCheckCircle } from 'react-icons/fi';
 
 const Tasks = () => {
   const [tasks, setTasks] = useState([]);
@@ -21,6 +22,10 @@ const Tasks = () => {
     taskType: 'Task',
     description: ''
   });
+  
+  // State to track active button in the modal
+  const [activeModalButton, setActiveModalButton] = useState(null);
+  
   const [showAddTaskModal, setShowAddTaskModal] = useState(false);
   const [showStatusDropdown, setShowStatusDropdown] = useState(null);
   const [showStatusOptions, setShowStatusOptions] = useState(false);
@@ -30,6 +35,11 @@ const Tasks = () => {
   const statusDropdownRef = useRef(null);
   const taskTypeButtonRef = useRef(null);
   const taskTypeDropdownRef = useRef(null);
+
+  // Function to handle modal button clicks
+  const handleModalButtonClick = (buttonName) => {
+    setActiveModalButton(activeModalButton === buttonName ? null : buttonName);
+  };
 
   // Effect to determine which status tables to show based on task data
   useEffect(() => {
@@ -119,6 +129,9 @@ const Tasks = () => {
       description: ''
     });
     
+    // Reset active button state
+    setActiveModalButton(null);
+    
     setShowAddTaskModal(false);
   };
 
@@ -184,6 +197,19 @@ const Tasks = () => {
     setShowStatusDropdown(null);
   };
 
+  // Get status icon based on status
+  const getStatusIcon = (status) => {
+    switch(status) {
+      case 'COMPLETE':
+        return <FiCheckCircle className="status-icon complete-icon" />;
+      case 'IN PROGRESS':
+        return <FiCircle className="status-icon progress-icon" />;
+      case 'TO DO':
+      default:
+        return <FiCircle className="status-icon todo-icon" />;
+    }
+  };
+
   // Render task type dropdown
   const renderTaskTypeDropdown = () => {
     return (
@@ -231,9 +257,9 @@ const Tasks = () => {
               className={`status-dropdown-option ${newTask.status === 'TO DO' ? 'selected' : ''}`}
               onClick={() => handleStatusChange('TO DO')}
             >
-              <span className="status-icon todo-icon">○</span>
+              <FiCircle className="status-icon todo-icon" />
               <span>TO DO</span>
-              {newTask.status === 'TO DO' && <span className="checkmark">✓</span>}
+              {newTask.status === 'TO DO' && <FiCheckCircle className="checkmark" />}
             </div>
           </div>
           
@@ -243,9 +269,9 @@ const Tasks = () => {
               className={`status-dropdown-option ${newTask.status === 'IN PROGRESS' ? 'selected' : ''}`}
               onClick={() => handleStatusChange('IN PROGRESS')}
             >
-              <span className="status-icon progress-icon">○</span>
+              <FiCircle className="status-icon progress-icon" />
               <span>IN PROGRESS</span>
-              {newTask.status === 'IN PROGRESS' && <span className="checkmark">✓</span>}
+              {newTask.status === 'IN PROGRESS' && <FiCheckCircle className="checkmark" />}
             </div>
           </div>
           
@@ -254,9 +280,9 @@ const Tasks = () => {
               className={`status-dropdown-option ${newTask.status === 'COMPLETE' ? 'selected' : ''}`}
               onClick={() => handleStatusChange('COMPLETE')}
             >
-              <span className="status-icon complete-icon">✓</span>
+              <FiCheckCircle className="status-icon complete-icon" />
               <span>COMPLETE</span>
-              {newTask.status === 'COMPLETE' && <span className="checkmark">✓</span>}
+              {newTask.status === 'COMPLETE' && <FiCheckCircle className="checkmark" />}
             </div>
           </div>
         </div>
@@ -282,9 +308,9 @@ const Tasks = () => {
               className={`status-dropdown-option ${currentStatus === 'TO DO' ? 'selected' : ''}`}
               onClick={() => handleTaskStatusChange(taskId, 'TO DO')}
             >
-              <span className="status-icon todo-icon">○</span>
+              <FiCircle className="status-icon todo-icon" />
               <span>TO DO</span>
-              {currentStatus === 'TO DO' && <span className="checkmark">✓</span>}
+              {currentStatus === 'TO DO' && <FiCheckCircle className="checkmark" />}
             </div>
           </div>
           
@@ -294,9 +320,9 @@ const Tasks = () => {
               className={`status-dropdown-option ${currentStatus === 'IN PROGRESS' ? 'selected' : ''}`}
               onClick={() => handleTaskStatusChange(taskId, 'IN PROGRESS')}
             >
-              <span className="status-icon progress-icon">○</span>
+              <FiCircle className="status-icon progress-icon" />
               <span>IN PROGRESS</span>
-              {currentStatus === 'IN PROGRESS' && <span className="checkmark">✓</span>}
+              {currentStatus === 'IN PROGRESS' && <FiCheckCircle className="checkmark" />}
             </div>
           </div>
           
@@ -305,9 +331,9 @@ const Tasks = () => {
               className={`status-dropdown-option ${currentStatus === 'COMPLETE' ? 'selected' : ''}`}
               onClick={() => handleTaskStatusChange(taskId, 'COMPLETE')}
             >
-              <span className="status-icon complete-icon">✓</span>
+              <FiCheckCircle className="status-icon complete-icon" />
               <span>COMPLETE</span>
-              {currentStatus === 'COMPLETE' && <span className="checkmark">✓</span>}
+              {currentStatus === 'COMPLETE' && <FiCheckCircle className="checkmark" />}
             </div>
           </div>
         </div>
@@ -325,16 +351,15 @@ const Tasks = () => {
       return null;
     }
     
-    let statusIcon = '○';
     let statusClass = 'todo-status';
     
     if (status === 'COMPLETE') {
-      statusIcon = '✓';
       statusClass = 'complete-status';
     } else if (status === 'IN PROGRESS') {
-      statusIcon = '○';
       statusClass = 'progress-status';
     }
+    
+    const statusIcon = getStatusIcon(status);
     
     return (
       <div className="task-section" key={status}>
@@ -368,7 +393,9 @@ const Tasks = () => {
                     <tr key={task.id} className="task-row">
                       <td className="task-name">
                         <div className="task-name-content">
-                          <span className={`task-status-indicator ${statusClass}`}>{statusIcon}</span>
+                          <span className={`task-status-indicator ${statusClass}`}>
+                            {getStatusIcon(task.status)}
+                          </span>
                           <div className="task-name-tooltip">
                             <span className="task-name-text">{task.name}</span>
                             {task.name.length > 20 && (
@@ -409,6 +436,7 @@ const Tasks = () => {
                             setShowStatusDropdown(task.id === showStatusDropdown ? null : task.id);
                           }}
                         >
+                          {getStatusIcon(task.status)}
                           <span className="status-text">{task.status}</span>
                         </div>
                         {showStatusDropdown === task.id && renderTaskStatusDropdown(task.id, task.status)}
@@ -451,9 +479,9 @@ const Tasks = () => {
 
   // Get status badge styles for Add Task modal
   const getStatusBadgeClass = (status) => {
-    if (status === 'COMPLETE') return 'task-status-badge-complete';
-    if (status === 'IN PROGRESS') return 'task-status-badge-progress';
-    return 'task-status-badge-todo';
+    if (status === 'COMPLETE') return 'status-complete';
+    if (status === 'IN PROGRESS') return 'status-progress';
+    return 'status-todo';
   };
 
   return (
@@ -519,35 +547,7 @@ const Tasks = () => {
                   <span className="task-type-text">{newTask.taskType || 'Task'}</span>
                   <span className="task-type-arrow">▼</span>
                 </button>
-                {showTaskTypeDropdown && (
-                  <div className="task-type-dropdown" ref={taskTypeDropdownRef}>
-                    <div className="task-type-header">Task Types</div>
-                    <div 
-                      className={`task-type-option ${newTask.taskType === 'Task' || !newTask.taskType ? 'selected' : ''}`}
-                      onClick={() => handleTaskTypeChange("Task")}
-                    >
-                      <span className="task-type-radio">⚪</span>
-                      <span className="task-type-label">Task (default)</span>
-                      {(newTask.taskType === 'Task' || !newTask.taskType) && <span className="task-type-check">✓</span>}
-                    </div>
-                    <div 
-                      className={`task-type-option ${newTask.taskType === 'Milestone' ? 'selected' : ''}`}
-                      onClick={() => handleTaskTypeChange("Milestone")}
-                    >
-                      <span className="task-type-radio">◇</span>
-                      <span className="task-type-label">Milestone</span>
-                      {newTask.taskType === 'Milestone' && <span className="task-type-check">✓</span>}
-                    </div>
-                    <div 
-                      className={`task-type-option ${newTask.taskType === 'Form Response' ? 'selected' : ''}`}
-                      onClick={() => handleTaskTypeChange("Form Response")}
-                    >
-                      <span className="task-type-radio">📄</span>
-                      <span className="task-type-label">Form Response</span>
-                      {newTask.taskType === 'Form Response' && <span className="task-type-check">✓</span>}
-                    </div>
-                  </div>
-                )}
+                {showTaskTypeDropdown && renderTaskTypeDropdown()}
               </div>
 
               <div className="task-name-input-container">
@@ -582,46 +582,59 @@ const Tasks = () => {
               )}
 
               <div className="task-options">
-                <div className="task-status">
-                  <button 
-                    className={`task-status-badge ${getStatusBadgeClass(newTask.status)}`}
-                    onClick={() => setShowStatusOptions(!showStatusOptions)}
-                    ref={statusButtonRef}
-                  >
-                    {newTask.status}
-                  </button>
-                  {showStatusOptions && renderStatusOptionsDropdown()}
-                </div>
+                {/* TO DO button styled like the other buttons */}
+                <button 
+                  className={`task-option-btn ${activeModalButton === 'status' ? 'active' : ''} ${getStatusBadgeClass(newTask.status)}`}
+                  onClick={() => {
+                    handleModalButtonClick('status');
+                    setShowStatusOptions(!showStatusOptions);
+                  }}
+                  ref={statusButtonRef}
+                >
+                  <span className="task-option-icon">{getStatusIcon(newTask.status)}</span>
+                  <span className="task-option-text">{newTask.status}</span>
+                </button>
+                {showStatusOptions && renderStatusOptionsDropdown()}
                 
-                <button className="task-option-btn">
+                <button 
+                  className={`task-option-btn ${activeModalButton === 'assignee' ? 'active' : ''}`}
+                  onClick={() => handleModalButtonClick('assignee')}
+                >
                   <span className="task-option-icon">👤</span>
                   <span className="task-option-text">Assignee</span>
                 </button>
                 
-                {/* Using the AddDate component */}
-                <AddDate 
-                  onDateChange={handleDueDateChange} 
-                  initialDate={newTask.dueDate}
-                />
+                <div 
+                  className={`task-date-wrapper ${activeModalButton === 'duedate' ? 'active' : ''}`}
+                  onClick={() => handleModalButtonClick('duedate')}
+                  style={{ display: 'inline-block' }}
+                >
+                  <AddDate 
+                    onDateChange={handleDueDateChange} 
+                    initialDate={newTask.dueDate}
+                  />
+                </div>
                 
-                {/* Using the Priority component */}
-                <Priority 
-                  onPriorityChange={handlePriorityChange}
-                  initialPriority={newTask.priority}
-                />
-                
-               
+                <div 
+                  className={`task-priority-wrapper ${activeModalButton === 'priority' ? 'active' : ''}`}
+                  onClick={() => handleModalButtonClick('priority')}
+                  style={{ display: 'inline-block' }}
+                >
+                  <Priority 
+                    onPriorityChange={handlePriorityChange}
+                    initialPriority={newTask.priority}
+                  />
+                </div>
               </div>
             </div>
 
             <div className="task-modal-footer">
-              <button className="task-templates-btn">
-                <span className="task-templates-icon">📋</span>
-                <span>Templates</span>
-              </button>
+             
               
               <div className="task-footer-right">
-                <button className="task-attachment-btn">📎</button>
+                <button className="task-attachment-btn">
+                  <FiPaperclip className="attachment-icon" />
+                </button>
                 <span className="task-comment-count">1</span>
                 <button 
                   className="task-create-btn"
@@ -640,4 +653,4 @@ const Tasks = () => {
   );
 };
 
-export default Tasks
+export default Tasks;
