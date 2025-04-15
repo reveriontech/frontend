@@ -7,6 +7,7 @@ import { useResponsiveNavigation } from './utils/responsive-utils';
 // Import pages
 import Home from './pages/Home';
 import Portal from './pages/Portal';
+import ContactPage from './pages/ContactPage'; 
 
 // Import layout components
 import Navbar from './components/layout/Navbar';
@@ -16,9 +17,9 @@ import Services from './components/sections/Services';
 import Team from './components/sections/Team';
 import Pricing from './components/sections/Pricing';
 import FAQ from './components/sections/FAQ';
-import Contact from './components/sections/Contact';
 import ChatWidget from './components/sections/ChatWidget';
 import MobileMenuButton from './components/common/MobileMenuButton'; 
+import Partners from './components/sections/Partners';
 
 function App() {
   const { user } = useAuth(); // Get authentication status
@@ -70,8 +71,8 @@ function App() {
         <Route path="/team" element={<Team />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/faq" element={<FAQ />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/partners" element={<partners />} />
+        <Route path="/contact" element={<ContactPage />} /> {/* Updated to use the new ContactPage component */}
+        <Route path="/partners" element={<Partners />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />
