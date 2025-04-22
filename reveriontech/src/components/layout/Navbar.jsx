@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import $ from 'jquery';
 import { FaBars, FaTimes, FaUser } from 'react-icons/fa';
 import AuthModal from '../sections/AuthModal';
@@ -12,6 +12,7 @@ import { FaFacebookSquare, FaInstagram, FaLinkedin, FaYoutube } from "react-icon
 const Navbar = () => {
   const { user, logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   
   const [isSticky, setIsSticky] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -355,6 +356,16 @@ const Navbar = () => {
     }
   };
   
+  const handleLinkClick = (e, path) => {
+    e.preventDefault();
+    navigate(path);
+    
+    if ($(navbarCollapseRef.current).hasClass('show')) {
+      $(navbarCollapseRef.current).collapse('hide');
+      setMenuOpen(false);
+    }
+  };
+  
   const isActive = (section) => activeSection === section;
   
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -459,19 +470,18 @@ const Navbar = () => {
                 onMouseEnter={() => handleMouseEnter('home')}
                 onMouseLeave={handleMouseLeave}
               >
-                {location.pathname === '/' ? (
-                  <a 
-                    className="nav-link custom-nav-link" 
-                    href="#home" 
-                    onClick={(e) => scrollToSection('home', e)}
-                  >
-                    Home
-                  </a>
-                ) : (
-                  <Link className="nav-link custom-nav-link" to="/">
-                    Home
-                  </Link>
-                )}
+                <Link 
+                  className="nav-link custom-nav-link" 
+                  to="/"
+                  onClick={(e) => {
+                    if (location.pathname === '/') {
+                      e.preventDefault();
+                      scrollToSection('home', e);
+                    }
+                  }}
+                >
+                  Home
+                </Link>
               </li>
               
               {/* About Us Dropdown */}
@@ -488,82 +498,42 @@ const Navbar = () => {
                   role="button" 
                   data-bs-toggle="dropdown" 
                   aria-expanded="false"
-                  onClick={(e) => {
-                    // Prevent dropdown from opening when clicking the main link
-                    e.preventDefault();
-                    e.stopPropagation();
-                    // Navigate to the about page
-                    window.location.href = '/about';
-                  }}
+                  onClick={(e) => handleLinkClick(e, '/about')}
                 >
                   About Us
                 </Link>
                 <ul className="dropdown-menu" aria-labelledby="aboutDropdown">
                   <li onMouseEnter={() => handleMouseEnter('about')} onMouseLeave={handleMouseLeave}>
-                    {location.pathname === '/' ? (
-                      <a 
-                        className={`dropdown-item ${isActive('about') ? 'active' : ''}`}
-                        href="#about" 
-                        onClick={(e) => {
-                          // Prevent dropdown from opening when clicking the main link
-                          e.preventDefault();
-                          e.stopPropagation();
-                          // Navigate to the about page
-                          window.location.href = '/about';
-                        }}
-                      >
-                        About Us
-                      </a>
-                    ) : (
-                      <Link className="dropdown-item" to="/about">
-                        About Us
-                      </Link>
-                    )}
+                    <Link 
+                      className={`dropdown-item ${location.pathname === '/about' ? 'active' : ''}`}
+                      to="/about"
+                    >
+                      About Us
+                    </Link>
                   </li>
                   <li onMouseEnter={() => handleMouseEnter('partners')} onMouseLeave={handleMouseLeave}>
-                    {location.pathname === '/' ? (
-                      <a 
-                        className={`dropdown-item ${isActive('partners') ? 'active' : ''}`}
-                        href="#partners" 
-                        onClick={(e) => scrollToSection('partners', e)}
-                      >
-                        Partners
-                      </a>
-                    ) : (
-                      <Link className="dropdown-item" to="/partners">
-                        Partners
-                      </Link>
-                    )}
+                    <Link 
+                      className={`dropdown-item ${location.pathname === '/partners' ? 'active' : ''}`}
+                      to="/partners"
+                    >
+                      Partners
+                    </Link>
                   </li>
                   <li onMouseEnter={() => handleMouseEnter('team')} onMouseLeave={handleMouseLeave}>
-                    {location.pathname === '/' ? (
-                      <a 
-                        className={`dropdown-item ${isActive('team') ? 'active' : ''}`}
-                        href="#team" 
-                        onClick={(e) => scrollToSection('team', e)}
-                      >
-                        Team
-                      </a>
-                    ) : (
-                      <Link className="dropdown-item" to="/team">
-                        Team
-                      </Link>
-                    )}
+                    <Link 
+                      className={`dropdown-item ${location.pathname === '/team' ? 'active' : ''}`}
+                      to="/team"
+                    >
+                      Team
+                    </Link>
                   </li>
                   <li onMouseEnter={() => handleMouseEnter('faq')} onMouseLeave={handleMouseLeave}>
-                    {location.pathname === '/' ? (
-                      <a 
-                        className={`dropdown-item ${isActive('faq') ? 'active' : ''}`}
-                        href="#faq" 
-                        onClick={(e) => scrollToSection('faq', e)}
-                      >
-                        FAQ
-                      </a>
-                    ) : (
-                      <Link className="dropdown-item" to="/faq">
-                        FAQ
-                      </Link>
-                    )}
+                    <Link 
+                      className={`dropdown-item ${location.pathname === '/faq' ? 'active' : ''}`}
+                      to="/faq"
+                    >
+                      FAQ
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -586,34 +556,20 @@ const Navbar = () => {
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="solutionsDropdown">
                   <li onMouseEnter={() => handleMouseEnter('price')} onMouseLeave={handleMouseLeave}>
-                    {location.pathname === '/' ? (
-                      <a 
-                        className={`dropdown-item ${isActive('price') ? 'active' : ''}`}
-                        href="#price" 
-                        onClick={(e) => scrollToSection('price', e)}
-                      >
-                        Solutions
-                      </a>
-                    ) : (
-                      <Link className="dropdown-item" to="/price">
-                        Solutions
-                      </Link>
-                    )}
+                    <Link 
+                      className={`dropdown-item ${location.pathname === '/pricing' ? 'active' : ''}`}
+                      to="/pricing"
+                    >
+                      Solutions
+                    </Link>
                   </li>
                   <li onMouseEnter={() => handleMouseEnter('portfolio')} onMouseLeave={handleMouseLeave}>
-                    {location.pathname === '/' ? (
-                      <a 
-                        className={`dropdown-item ${isActive('portfolio') ? 'active' : ''}`}
-                        href="#portfolio" 
-                        onClick={(e) => scrollToSection('portfolio', e)}
-                      >
-                        Portfolio
-                      </a>
-                    ) : (
-                      <Link className="dropdown-item" to="/portfolio">
-                        Portfolio
-                      </Link>
-                    )}
+                    <Link 
+                      className={`dropdown-item ${location.pathname === '/portfolio' ? 'active' : ''}`}
+                      to="/portfolio"
+                    >
+                      Portfolio
+                    </Link>
                   </li>
                 </ul>
               </li>
