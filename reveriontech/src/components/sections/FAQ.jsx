@@ -1,9 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const FAQ = () => {
   // State to track expanded FAQ items
   const [expandedId, setExpandedId] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    // Set component as visible for entrance animations
+    setIsVisible(true);
+    
+    // Add scroll listener for parallax effects
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const parallaxElements = document.querySelectorAll('.parallax-element');
+      
+      parallaxElements.forEach(el => {
+        const speed = parseFloat(el.getAttribute('data-speed') || 0.1);
+        el.style.transform = `translateY(${scrollPosition * speed}px)`;
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   
   // FAQ data
   const faqItems = [
@@ -59,38 +82,103 @@ const FAQ = () => {
     }
   };
 
-  const backgroundGradient = "linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%)";
   const accentColor = "#ff9800"; // Warmer orange accent
 
   return (
-    <section className="section py-5" id="faq" style={{ 
-      background: backgroundGradient,
-      position: "relative",
-      overflow: "hidden"
-    }}>
+    <section 
+      className="position-relative py-5" 
+      id="faq" 
+      style={{ 
+        backgroundColor: "#f8f9fa",
+        minHeight: "80vh",
+        overflow: "hidden",
+        paddingTop: "80px",
+        paddingBottom: "80px"
+      }}
+    >
       {/* Background decorative elements */}
-      <div style={{
-        position: "absolute",
-        width: "300px",
-        height: "300px",
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(255,152,0,0.1) 0%, rgba(255,152,0,0) 70%)",
-        top: "-100px",
-        right: "-100px",
-        zIndex: 0
-      }}/>
-      <div style={{
-        position: "absolute",
-        width: "200px",
-        height: "200px",
-        borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(255,152,0,0.08) 0%, rgba(255,152,0,0) 70%)",
-        bottom: "50px",
-        left: "10%",
-        zIndex: 0
-      }}/>
+      <motion.div 
+        className="position-absolute"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 0.15, scale: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        style={{
+          width: "400px",
+          height: "400px",
+          borderRadius: "50%",
+          background: `linear-gradient(135deg, ${accentColor} 0%, #ffad33 100%)`,
+          top: "-100px",
+          right: "-100px",
+          zIndex: 0
+        }}
+      />
+      
+      <motion.div 
+        className="position-absolute parallax-element"
+        data-speed="-0.05"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 0.15, scale: 1 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+        style={{
+          width: "300px",
+          height: "300px",
+          borderRadius: "50%",
+          background: "linear-gradient(135deg, #0088ff 0%, #0055cc 100%)",
+          bottom: "-50px",
+          left: "-50px",
+          zIndex: 0
+        }}
+      />
+      
+      <motion.div 
+        className="position-absolute parallax-element"
+        data-speed="0.03"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.05 }}
+        transition={{ delay: 0.5, duration: 1 }}
+        style={{
+          width: "200px",
+          height: "200px",
+          background: "#000",
+          transform: "rotate(45deg)",
+          top: "30%",
+          left: "15%",
+          zIndex: 0
+        }}
+      />
+      
+      {/* Floating decorative elements */}
+      {[...Array(8)].map((_, i) => (
+        <motion.div 
+          key={i}
+          className="position-absolute parallax-element"
+          data-speed={0.05 * (Math.random() - 0.5)}
+          initial={{ 
+            x: Math.random() * 100 - 50, 
+            y: Math.random() * 100 - 50, 
+            opacity: 0 
+          }}
+          animate={{ 
+            opacity: 0.08
+          }}
+          transition={{ 
+            delay: 0.3 + i * 0.1,
+            duration: 0.8
+          }}
+          style={{
+            width: 10 + Math.random() * 30,
+            height: 10 + Math.random() * 30,
+            borderRadius: Math.random() > 0.5 ? '50%' : '0',
+            transform: Math.random() > 0.5 ? 'rotate(45deg)' : '',
+            backgroundColor: Math.random() > 0.5 ? '#0088ff' : accentColor,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            zIndex: 0
+          }}
+        />
+      ))}
 
-      <div className="container position-relative">
+      <div className="container position-relative" style={{ zIndex: 1 }}>
         {/* Section header */}
         <motion.div 
           className="text-center mb-5"
@@ -106,7 +194,31 @@ const FAQ = () => {
             fontSize: "0.7rem",
             letterSpacing: "1px"
           }}>FAQ</span>
-          <h3 className="fw-bold mb-2">Frequently Asked Questions</h3>
+          <motion.h2 
+            className="mb-3"
+            style={{ 
+              fontSize: '2.5rem', 
+              fontWeight: '700', 
+              color: '#333',
+              position: 'relative',
+              display: 'inline-block'
+            }}
+          >
+            Frequently Asked Questions
+            <motion.div 
+              initial={{ width: 0 }}
+              animate={{ width: "80px" }}
+              transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }}
+              style={{ 
+                height: "4px", 
+                backgroundColor: accentColor,
+                borderRadius: "2px",
+                marginTop: "10px",
+                marginLeft: "auto",
+                marginRight: "auto"
+              }}
+            />
+          </motion.h2>
           <p className="text-muted mx-auto small" style={{ maxWidth: "500px" }}>
             Find answers to common questions about our services and support options
           </p>
@@ -137,7 +249,7 @@ const FAQ = () => {
                       y: -2
                     }}
                     style={{ 
-                      backgroundColor: expandedId === item.id ? "#ffffff" : "rgba(255, 255, 255, 0.6)",
+                      backgroundColor: expandedId === item.id ? "#ffffff" : "rgba(255, 255, 255, 0.8)",
                       borderRadius: "12px",
                       cursor: "pointer",
                       transition: "all 0.3s ease",
@@ -246,7 +358,7 @@ const FAQ = () => {
                         <div className="p-3 ms-4 ps-3" style={{ 
                           borderLeft: `3px solid ${accentColor}50`,
                           marginLeft: "17px",
-                          backgroundColor: "rgba(255, 255, 255, 0.4)",
+                          backgroundColor: "rgba(255, 255, 255, 0.7)",
                           borderRadius: "0 0 12px 12px",
                           boxShadow: "inset 0 2px 6px rgba(0, 0, 0, 0.02)"
                         }}>

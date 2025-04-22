@@ -69,7 +69,7 @@ const HeaderContact = () => {
             fontWeight: '700'
           }}
         >
-          Smart Solutions
+          Trusted Partners
         </motion.h1>
         
         <motion.p 
@@ -83,7 +83,7 @@ const HeaderContact = () => {
             textShadow: '0 1px 2px rgba(0,0,0,0.2)'
           }}
         >
-          We Build What Your Business Needs to Win — Nothing More, Nothing Less.
+          Collaboration That Drives Innovation, Growth, and Long-Term Success.
         </motion.p>
       </div>
     </motion.div>

@@ -1,0 +1,32 @@
+[33md319f51[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to HEAD
+[33md319f51[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{1}: reset: moving to HEAD
+[33md319f51[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{2}: reset: moving to HEAD
+[33md319f51[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{3}: reset: moving to HEAD
+[33md319f51[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m HEAD@{4}: commit: New updates
+[33mb347359[m HEAD@{5}: commit: updates about
+[33mc789740[m HEAD@{6}: commit: hero updates
+[33m0b8ef3d[m HEAD@{7}: commit: Adding link on Hero
+[33m829ebd2[m HEAD@{8}: commit: updates navbar pathing
+[33m00209f3[m HEAD@{9}: commit: updates path
+[33md8a940c[m HEAD@{10}: commit: fixing errors
+[33mb50da5f[m HEAD@{11}: commit: fixing errors
+[33m0ceed3d[m HEAD@{12}: commit (merge): Resolved merge conflict in Contact.jsx
+[33mb2d247e[m HEAD@{13}: commit: New Updates
+[33m8bf38d6[m HEAD@{14}: commit (merge): Merge branch 'main' of github.com:reveriontech/frontend
+[33m54fee70[m HEAD@{15}: commit: New updates
+[33m2214729[m HEAD@{16}: commit: headerDropdown and Rotour contact
+[33m28a17a7[m HEAD@{17}: commit: updates footer
+[33mfc3f413[m HEAD@{18}: commit: Adding socialMedia Links
+[33md10536e[m HEAD@{19}: commit: updating cta
+[33m716de0d[m HEAD@{20}: commit: Updating task modal
+[33m389bc04[m HEAD@{21}: commit: Fixing flex alingment
+[33m215e9bc[m HEAD@{22}: commit: Updating tables and reponsinve-About
+[33m00fd8ca[m HEAD@{23}: commit: Fixing Dropdown position
+[33m3b0c7ef[m HEAD@{24}: commit: Fix Hero Responsive
+[33m2d1efb2[m HEAD@{25}: commit: Update Footer
+[33m0fa9840[m HEAD@{26}: commit: Updating HeroTitle and Widget
+[33m28a9df7[m HEAD@{27}: pull origin main: Fast-forward
+[33m7c5be26[m HEAD@{28}: commit: Fixing Textalignment solutions
+[33mdb80aa7[m HEAD@{29}: commit: Adding button to Hero
+[33m550c5d0[m HEAD@{30}: commit: Updating Solutions and modal
+[33ma917f97[m HEAD@{31}: clone: from github.com:reveriontech/frontend.git

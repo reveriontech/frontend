@@ -292,8 +292,6 @@ const About = () => {
                 <motion.a 
                   href="https://calendly.com/reveriontech?package=${plan.name}"
                   className="btn btn-primary position-relative overflow-hidden"
-                  target="_blank" 
-                  rel="noopener noreferrer"
                   style={{ 
                     backgroundColor: '#5271ff', 
                     border: 'none', 

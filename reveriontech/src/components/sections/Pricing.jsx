@@ -35,10 +35,42 @@ const Pricing = () => {
   }, []);
   
   // Animation variants
-  const containerVariants = {hidden: { opacity: 0 },visible: {opacity: 1,transition: {staggerChildren: 0.1,delayChildren: 0.2}}};
-  const headerVariants = {hidden: { y: -20, opacity: 0 },visible: { y: 0, opacity: 1,transition: { type: "spring", stiffness: 300, damping: 20,delay: 0.1}}};
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const headerVariants = {
+    hidden: { y: -20, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: { 
+        type: "spring", 
+        stiffness: 300, 
+        damping: 20,
+        delay: 0.1
+      }
+    }
+  };
   
-  const cardVariants = {hidden: { opacity: 0, y: 20 },visible: (i) => ({opacity: 1,y: 0,transition: {delay: 0.1 * i,duration: 0.5,ease: "easeOut"}}),
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 0.1 * i,
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    }),
     hover: {
       y: -10,
       boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
@@ -99,11 +131,32 @@ const Pricing = () => {
 
   return (
     <section 
-      className="position-relative py-5" id="price"style={{backgroundColor: "#f8f9fa",minHeight: "80vh",overflow: "hidden",paddingTop: "80px",paddingBottom: "80px"}}>
+      className="position-relative py-5" 
+      id="price"
+      style={{
+        backgroundColor: "#f8f9fa",
+        minHeight: "80vh",
+        overflow: "hidden",
+        paddingTop: "80px",
+        paddingBottom: "80px"
+      }}
+    >
       {/* Background decorative elements */}
       <motion.div 
-        className="position-absolute"initial={{ opacity: 0, scale: 0.8 }}animate={{ opacity: 0.15, scale: 1 }}transition={{ duration: 1, ease: "easeOut" }}
-        style={{width: "400px",height: "400px",borderRadius: "50%",background: "linear-gradient(135deg, #0d6efd 0%, #3b5afe 100%)",top: "-100px", right: "-100px",zIndex: 0}}/>
+        className="position-absolute"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 0.15, scale: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        style={{
+          width: "400px",
+          height: "400px",
+          borderRadius: "50%",
+          background: "linear-gradient(135deg, #0d6efd 0%, #3b5afe 100%)",
+          top: "-100px",
+          right: "-100px",
+          zIndex: 0
+        }}
+      />
       
       <motion.div 
         className="position-absolute parallax-element"
