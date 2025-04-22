@@ -2111,7 +2111,9 @@ button:not(:disabled) {
   position: relative;
   top: 80px;
   z-index: 1;
+  /* background-color: #21232496; */
 }
+
 
 .subcribe-form input {
   padding: 14px 20px;
@@ -2605,6 +2607,28 @@ button:not(:disabled) {
     text-align: center;
   }
 }
+
+.social-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.social-icon-link:hover .social-icon {
+  color: #EEAF00 !important;
+  transform: scale(1.1);
+}
+
+.social-icon {
+  transition: all 0.3s ease;
+}
+
+
+
 /*# sourceMappingURL=style.css.map */
 
 

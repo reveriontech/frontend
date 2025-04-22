@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import AOS from 'aos';
-import Contact from '../components/sections/Contact';
-import HeaderContact from '../components/sections/HeaderContact';
+import About from '../components/sections/About';
+import HeaderAboutus from '../components/sections/HeaderAboutus';
 
-const ContactPage = () => {
+const AboutusPage = () => {
   useEffect(() => {
     // Initialize AOS
     AOS.init({
@@ -18,11 +18,11 @@ const ContactPage = () => {
   }, []);
 
   return (
-    <div  style={{ paddingTop: '80px' }}>
-      <HeaderContact />
-      <Contact />
+    <div style={{ paddingTop: '80px' }}>
+      <HeaderAboutus />
+      <About />
     </div>
   );
 };
 
-export default ContactPage;
+export default AboutusPage;

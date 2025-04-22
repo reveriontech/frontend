@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaHandshake, FaRocket, FaGlobe } from 'react-icons/fa';
 import { color } from 'chart.js/helpers';
 
-const WhyChooseSection = () => {
+const About = () => {
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -34,7 +34,7 @@ const WhyChooseSection = () => {
   };
 
   return (
-    <section className="py-5"  style={{backgroundColor: "white",}} id="about">
+    <section className="py-5"  style={{backgroundColor: "white", }} id="about">
       <div className="container">
         <motion.div
           className="row justify-content-between align-items-center"
@@ -159,4 +159,4 @@ const WhyChooseSection = () => {
   );
 };
 
-export default WhyChooseSection;
+export default About;
