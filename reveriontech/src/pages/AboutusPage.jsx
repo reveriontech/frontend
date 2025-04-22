@@ -3,6 +3,7 @@ import AOS from 'aos';
 import About from '../components/sections/About';
 import HeaderAboutus from '../components/sections/HeaderAboutus';
 import Team from '../components/sections/Team';
+import SecondCta from '../components/sections/SecondCta';
 
 const AboutusPage = () => {
   useEffect(() => {
@@ -22,6 +23,7 @@ const AboutusPage = () => {
     <div style={{ paddingTop: '80px' }}>
       <HeaderAboutus />
       <About />
+      <SecondCta />
       <Team />
     </div>
   );

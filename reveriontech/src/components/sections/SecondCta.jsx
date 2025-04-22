@@ -24,27 +24,18 @@ const SecondCta = () => {
       style={{
         background: "url('images/landingpict1.jpg') center center",
         backgroundSize: "cover",
-        minHeight: "300px",
+        minHeight: "50px",
         height: "10px",
       }}
     >
       <div className="bg-overlay"></div>
-      <div className="container py-4">
+      <div className="container py-4" style={{ marginTop: '-53px' }}>
         <div className="row justify-content-center">
           <div className="col-10 text-center">
             <div data-aos="fade-up">
               <h4 className="title text-white text-uppercase mb-3">"We refine every detail."</h4>
               <p className="text-white-50 mx-auto para-desc">Shaping the future of decentralized technology</p>
             </div>
-            {/* <div>
-              <a 
-                href="#contact" 
-                className="btn btn-custom"
-                onClick={(e) => scrollToSection('contact', e)}
-              >
-                Contact us
-              </a>
-            </div> */}
           </div>
         </div>
       </div>

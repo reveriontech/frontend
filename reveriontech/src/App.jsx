@@ -7,6 +7,8 @@ import { useResponsiveNavigation } from './utils/responsive-utils';
 import Home from './pages/Home';
 import Portal from './pages/Portal';
 import ContactPage from './pages/ContactPage'; 
+import AboutusPage from './pages/AboutusPage';
+import FaqPage from './pages/FaqPage';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
@@ -18,7 +20,6 @@ import ChatWidget from './components/sections/ChatWidget';
 import MobileMenuButton from './components/common/MobileMenuButton'; 
 import Partners from './components/sections/Partners';
 import HeaderContact from './components/sections/HeaderContact';
-import AboutusPage from './pages/AboutusPage';
 
 function App() {
   const { user } = useAuth();
@@ -66,7 +67,7 @@ function App() {
         <Route path="/service" element={<Services />} />
         <Route path="/team" element={<Team />} />
         <Route path="/pricing" element={<Pricing />} />
-        <Route path="/faq" element={<FAQ />} />
+        <Route path="/faq" element={<FaqPage />} />
         <Route path="/contact" element={<ContactPage />} /> 
         <Route path="/headercontact" element={<HeaderContact to="/" />} />
         <Route path="/partners" element={<Partners />} />
