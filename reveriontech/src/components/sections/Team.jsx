@@ -444,7 +444,6 @@ const Team = () => {
                       fontSize: '1.25rem', 
                       fontWeight: '600',
                       marginBottom: '5px',
-                      color: '#333',
                       transition: "all 0.3s ease",
                       color: hoveredMember === member.id ? '#5271ff' : '#333'
                     }}
