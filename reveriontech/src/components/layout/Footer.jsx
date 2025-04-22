@@ -12,21 +12,21 @@ const Footer = () => {
           <div className="row">
             <div className="col-lg-4 col-md-12">
               <Link className="footer-logo text-white border p-2" to="/">REVERIONTECH</Link>
-              <p className="text-foot mt-3">Shaping the future of decentralized technology</p>
+              <p className="text-foot mt-3">Redefine every detail</p>
               <div className="d-flex mt-4">
-                <a href="#" className="me-3 d-flex align-items-center justify-content-center rounded-circle bg-secondary" style={{ width: '40px', height: '40px' }}>
+                <a href="https://www.facebook.com/reveriondao" className="me-3 d-flex align-items-center justify-content-center rounded-circle bg-secondary" style={{ width: '40px', height: '40px' }}>
                   <FaFacebookF className="text-white" />
                 </a>
-                <a href="#" className="me-3 d-flex align-items-center justify-content-center rounded-circle bg-secondary" style={{ width: '40px', height: '40px' }}>
+                <a href="https://www.linkedin.com/company/reveriontech/" className="me-3 d-flex align-items-center justify-content-center rounded-circle bg-secondary" style={{ width: '40px', height: '40px' }}>
                   <FaLinkedinIn className="text-white" />
                 </a>
-                <a href="#" className="me-3 d-flex align-items-center justify-content-center rounded-circle bg-secondary" style={{ width: '40px', height: '40px' }}>
+                <a href="https://www.youtube.com/@ReverionTech" className="me-3 d-flex align-items-center justify-content-center rounded-circle bg-secondary" style={{ width: '40px', height: '40px' }}>
                   <FaYoutube className="text-white" />
                 </a>
                 <a href="#" className="me-3 d-flex align-items-center justify-content-center rounded-circle bg-secondary" style={{ width: '40px', height: '40px' }}>
                   <FaInstagram className="text-white" />
                 </a>
-                <a href="#" className="me-3 d-flex align-items-center justify-content-center rounded-circle bg-secondary" style={{ width: '40px', height: '40px' }}>
+                <a href="https://x.com/reveriondao" className="me-3 d-flex align-items-center justify-content-center rounded-circle bg-secondary" style={{ width: '40px', height: '40px' }}>
                   <FaTwitter className="text-white" />
                 </a>
               </div>
