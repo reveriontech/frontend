@@ -9,16 +9,15 @@ import Portal from './pages/Portal';
 import ContactPage from './pages/ContactPage'; 
 import AboutusPage from './pages/AboutusPage';
 import FaqPage from './pages/FaqPage';
+import SolutionsPage from './pages/SolutionsPage';
+import PartnersPage from './pages/PartnersPage';
 
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Services from './components/sections/Services';
 import Team from './components/sections/Team';
-import Pricing from './components/sections/Pricing';
-import FAQ from './components/sections/FAQ';
 import ChatWidget from './components/sections/ChatWidget';
 import MobileMenuButton from './components/common/MobileMenuButton'; 
-import Partners from './components/sections/Partners';
 import HeaderContact from './components/sections/HeaderContact';
 
 function App() {
@@ -66,11 +65,11 @@ function App() {
         <Route path="/about" element={<AboutusPage />} />
         <Route path="/service" element={<Services />} />
         <Route path="/team" element={<Team />} />
-        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/pricing" element={<SolutionsPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/contact" element={<ContactPage />} /> 
         <Route path="/headercontact" element={<HeaderContact to="/" />} />
-        <Route path="/partners" element={<Partners />} />
+        <Route path="/partners" element={<PartnersPage />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Footer />

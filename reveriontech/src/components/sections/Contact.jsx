@@ -22,6 +22,23 @@ const Contact = () => {
   useEffect(() => {
     // Start animations when component mounts
     controls.start("visible");
+    
+    // Add scroll listener for parallax effects
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const parallaxElements = document.querySelectorAll('.parallax-element');
+      
+      parallaxElements.forEach(el => {
+        const speed = parseFloat(el.getAttribute('data-speed') || 0.1);
+        el.style.transform = `translateY(${scrollPosition * speed}px)`;
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [controls]);
   
   const handleChange = (e) => {
@@ -114,7 +131,9 @@ const Contact = () => {
     marginBottom: '10px',
     transition: 'transform 0.2s ease, box-shadow 0.2s ease',
     cursor: 'pointer',
-    border: '1px solid #f5f5f5'
+    border: '1px solid #f5f5f5',
+    position: 'relative',
+    zIndex: 2
   };
 
   const iconCircleStyle = {
@@ -130,18 +149,123 @@ const Contact = () => {
   };
 
   return (
-    <section style={{ backgroundColor: "#ffffff", padding: "60px 0", minHeight: "60vh"}} id="contact">
-      <div className="container">
+    <section 
+      className="contact-section position-relative d-flex align-items-center" 
+      id="contact" 
+      style={{ 
+        backgroundColor: "#f8f9fa", 
+        padding: "60px 0", 
+        minHeight: "80vh",
+        overflow: "hidden"
+      }}
+    >
+      {/* Background decorative elements - similar to Partners component */}
+      <motion.div 
+        className="position-absolute"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 0.15, scale: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        style={{
+          width: "400px",
+          height: "400px",
+          borderRadius: "50%",
+          background: "linear-gradient(135deg, #faa307 0%, #ff9800 100%)",
+          top: "-100px",
+          right: "-100px",
+          zIndex: 0
+        }}
+      />
+      
+      <motion.div 
+        className="position-absolute parallax-element"
+        data-speed="-0.05"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 0.15, scale: 1 }}
+        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+        style={{
+          width: "300px",
+          height: "300px",
+          borderRadius: "50%",
+          background: "linear-gradient(135deg, #3f51b5 0%, #2196f3 100%)",
+          bottom: "-50px",
+          left: "-50px",
+          zIndex: 0
+        }}
+      />
+      
+      <motion.div 
+        className="position-absolute parallax-element"
+        data-speed="0.03"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.05 }}
+        transition={{ delay: 0.5, duration: 1 }}
+        style={{
+          width: "200px",
+          height: "200px",
+          background: "#000",
+          transform: "rotate(45deg)",
+          top: "20%",
+          left: "15%",
+          zIndex: 0
+        }}
+      />
+      
+      {/* Floating decorative elements */}
+      {[...Array(5)].map((_, i) => (
+        <motion.div 
+          key={i}
+          className="position-absolute parallax-element"
+          data-speed={0.05 * (Math.random() - 0.5)}
+          initial={{ 
+            x: Math.random() * 100 - 50, 
+            y: Math.random() * 100 - 50, 
+            opacity: 0 
+          }}
+          animate={{ 
+            opacity: 0.08
+          }}
+          transition={{ 
+            delay: 0.3 + i * 0.1,
+            duration: 0.8
+          }}
+          style={{
+            width: 10 + Math.random() * 40,
+            height: 10 + Math.random() * 40,
+            borderRadius: Math.random() > 0.5 ? '50%' : '0',
+            transform: Math.random() > 0.5 ? 'rotate(45deg)' : '',
+            backgroundColor: Math.random() > 0.5 ? '#faa307' : '#3f51b5',
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            zIndex: 0
+          }}
+        />
+      ))}
+      
+      {/* Main content */}
+      <div className="container position-relative" style={{ zIndex: 1 }}>
         <div className="row g-5">
           <div className="col-lg-6">
             <motion.div initial="hidden" animate={controls} variants={containerVariants} className="pe-lg-4" viewport={{ once: true, amount: 0.3 }}>
               <motion.h2 variants={itemVariants} className="mb-4"
-                style={{ fontSize: '42px', 
+                style={{ 
+                  fontSize: '42px', 
                   fontWeight: '700', 
-                  color: '#333'
+                  color: '#333',
+                  position: 'relative'
                 }}
               >
                 We Love Talking To Visionaries Like You.
+                <motion.div 
+                  initial={{ width: 0 }}
+                  animate={{ width: "80px" }}
+                  transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }}
+                  style={{ 
+                    height: "4px", 
+                    backgroundColor: "#faa307",
+                    borderRadius: "2px",
+                    marginTop: "15px"
+                  }}
+                />
               </motion.h2>
               
               <motion.p 
@@ -150,7 +274,9 @@ const Contact = () => {
                 style={{
                   fontSize: '16px',
                   color: '#666',
-                  lineHeight: '1.7'
+                  lineHeight: '1.7',
+                  position: 'relative',
+                  zIndex: 2
                 }}
               >
                 If you have an idea in mind, feel free to reach out by submitting the form below to schedule a discovery call with us.
@@ -162,7 +288,9 @@ const Contact = () => {
                 style={{
                   fontSize: '16px',
                   color: '#666',
-                  lineHeight: '1.7'
+                  lineHeight: '1.7',
+                  position: 'relative',
+                  zIndex: 2
                 }}
               >
                 We build cutting-edge digital solutions—from AI and Web3 to e-commerce and DevOps—that give your brand the edge in a tech-first world.
@@ -248,7 +376,11 @@ const Contact = () => {
                 borderRadius: '15px',
                 padding: '35px',
                 boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
-                marginTop: '10px'
+                marginTop: '10px',
+                backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                backdropFilter: 'blur(10px)',
+                position: 'relative',
+                zIndex: 2
               }}
             >
               {formStatus.message && (
@@ -281,6 +413,7 @@ const Contact = () => {
                       fontSize: '14px',
                       borderRadius: '8px',
                       border: '1px solid #eee',
+                      backgroundColor: 'rgba(255, 255, 255, 0.8)'
                     }}
                   />
                 </motion.div>
@@ -304,6 +437,7 @@ const Contact = () => {
                         fontSize: '14px',
                         borderRadius: '8px',
                         border: '1px solid #eee',
+                        backgroundColor: 'rgba(255, 255, 255, 0.8)'
                       }}
                     />
                   </motion.div>
@@ -328,7 +462,8 @@ const Contact = () => {
                           fontSize: '14px',
                           borderRadius: '0 8px 8px 0',
                           border: '1px solid #eee',
-                          borderLeft: 'none'
+                          borderLeft: 'none',
+                          backgroundColor: 'rgba(255, 255, 255, 0.8)'
                         }}
                       />
                     </div>
@@ -353,7 +488,8 @@ const Contact = () => {
                       fontSize: '14px',
                       borderRadius: '8px',
                       border: '1px solid #eee',
-                      resize: 'none'
+                      resize: 'none',
+                      backgroundColor: 'rgba(255, 255, 255, 0.8)'
                     }}
                   ></textarea>
                 </motion.div>
@@ -376,7 +512,7 @@ const Contact = () => {
                 >
                   <motion.button 
                     type="submit"
-                    className="btn btn-lg"
+                    className="btn btn-lg position-relative overflow-hidden"
                     disabled={formStatus.isSubmitting}
                     style={{ 
                       backgroundColor: '#faa307',
@@ -394,10 +530,22 @@ const Contact = () => {
                     }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    {formStatus.isSubmitting ? 'Sending...' : 'Submit'}
-                    {!formStatus.isSubmitting && (
-                      <FaPaperPlane size={14} style={{ marginLeft: '8px' }} />
-                    )}
+                    <span className="position-relative" style={{ zIndex: 2 }}>
+                      {formStatus.isSubmitting ? 'Sending...' : 'Submit'}
+                      {!formStatus.isSubmitting && (
+                        <FaPaperPlane size={14} style={{ marginLeft: '8px' }} />
+                      )}
+                    </span>
+                    <motion.span 
+                      className="position-absolute top-0 start-0 w-100 h-100"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: 0 }}
+                      transition={{ duration: 0.3 }}
+                      style={{
+                        background: "linear-gradient(90deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%)",
+                        zIndex: 1
+                      }}
+                    />
                   </motion.button>
                 </motion.div>
               </form>

@@ -52,11 +52,6 @@ const Home = () => {
     <main>
       <Hero />
       <Services />
-      <Cta />
-      <Pricing />
-      <StartProject />
-      <Partners />
-      <FAQ />
     </main>
   );
 };
