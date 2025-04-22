@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaHandshake, FaRocket, FaGlobe } from 'react-icons/fa';
-import { color } from 'chart.js/helpers';
 
 const About = () => {
   // Animation variants
