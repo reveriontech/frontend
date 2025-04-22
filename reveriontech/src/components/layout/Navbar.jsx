@@ -584,7 +584,7 @@ const Navbar = () => {
             <div className={`${isSticky ? 'sticky' : ''} d-flex align-items-center ms-auto`}>
                 <ul className="list-unstyled d-flex mb-0">
                   <li className="mx-1">
-                    <a href="#" className="social-icon-link">
+                    <a href="https://www.facebook.com/reveriondao" className="social-icon-link">
                       <div className="icon-circle">
                         <FaFacebookSquare 
                           size={16} 
@@ -594,7 +594,7 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li className="mx-1">
-                    <a href="#" className="social-icon-link">
+                    <a href="https://www.instagram.com/reveriontech/" className="social-icon-link">
                       <div className="icon-circle">
                         <FaInstagram 
                           size={16} 
@@ -604,7 +604,7 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li className="mx-1">
-                    <a href="#" className="social-icon-link">
+                    <a href="https://www.linkedin.com/company/reveriontech" className="social-icon-link">
                       <div className="icon-circle">
                         <FaLinkedin 
                           size={16} 
@@ -614,7 +614,7 @@ const Navbar = () => {
                     </a>
                   </li>
                   <li className="mx-1">
-                    <a href="#" className="social-icon-link">
+                    <a href="https://www.youtube.com/@ReverionTech" className="social-icon-link">
                       <div className="icon-circle">
                         <FaYoutube 
                           size={16} 
