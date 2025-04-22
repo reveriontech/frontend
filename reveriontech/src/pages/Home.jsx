@@ -53,8 +53,6 @@ const Home = () => {
       <Hero />
       <Services />
       <Cta />
-      <Team />
-      <SecondCta />
       <Pricing />
       <StartProject />
       <Partners />

@@ -519,14 +519,6 @@ const Navbar = () => {
                       Partners
                     </Link>
                   </li>
-                  <li onMouseEnter={() => handleMouseEnter('team')} onMouseLeave={handleMouseLeave}>
-                    <Link 
-                      className={`dropdown-item ${location.pathname === '/team' ? 'active' : ''}`}
-                      to="/team"
-                    >
-                      Team
-                    </Link>
-                  </li>
                   <li onMouseEnter={() => handleMouseEnter('faq')} onMouseLeave={handleMouseLeave}>
                     <Link 
                       className={`dropdown-item ${location.pathname === '/faq' ? 'active' : ''}`}

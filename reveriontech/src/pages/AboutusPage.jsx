@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import About from '../components/sections/About';
 import HeaderAboutus from '../components/sections/HeaderAboutus';
+import Team from '../components/sections/Team';
 
 const AboutusPage = () => {
   useEffect(() => {
@@ -21,6 +22,7 @@ const AboutusPage = () => {
     <div style={{ paddingTop: '80px' }}>
       <HeaderAboutus />
       <About />
+      <Team />
     </div>
   );
 };
