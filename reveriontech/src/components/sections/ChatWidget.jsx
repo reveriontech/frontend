@@ -69,7 +69,7 @@ const ChatWidget = () => {
           setMessages([
             {
               role: 'assistant',
-              content: 'Hello! I\'m your ReverionAI Assistant. How can I help you today?'
+              content: 'Hello! I\'m Revey, an AI Assistant. How can I help you today?'
             }
           ]);
         }
@@ -247,7 +247,7 @@ const ChatWidget = () => {
           <div className="mini-chat-content">
             {miniMessages.length === 0 ? (
               <div className="mini-chat-message assistant">
-                <span>Hello! I'm your ReverionAI Assistant. How can I help you today?</span>
+                <span>Hello! I'm Revey, an AI Assistant. How can I help you today?</span>
               </div>
             ) : (
               miniMessages.map((msg, index) => (
