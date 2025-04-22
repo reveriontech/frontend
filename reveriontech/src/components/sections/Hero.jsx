@@ -46,7 +46,7 @@ const Hero = () => {
                   </div>
                   <div className="mt-4 pt-2">
                     <a 
-                      href="https://forms.clickup.com/9016503780/p/f/8cptvf4-496/BTYBZQ6D05CPYSPJKU/project-intake-form" 
+                      href="https://calendly.com/reveriontech" 
                       className="btn btn-custom1"
                       target="_blank" 
                       rel="noopener noreferrer" 

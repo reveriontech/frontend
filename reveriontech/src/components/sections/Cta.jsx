@@ -29,9 +29,8 @@ const Cta = () => {
               <p className="text-white-50 mx-auto para-desc mb-0">Create high-performance websites designed for success!</p>
             </div>        
             <a 
-              href="#contact" 
+              href="https://calendly.com/reveriontech" 
               className="btn btn-custom"
-              onClick={(e) => scrollToSection('contact', e)}
             >
               Contact us
             </a>
