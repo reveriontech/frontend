@@ -9,11 +9,12 @@ build/
 *.log
 
 # Ignore environment files
-.env
-.env.local
+reveriontech/.env
+reveriontech/.env.*
 
 # Ignore OS specific files
 .DS_Store
 Thumbs.db
 
 reveriontech/node_modules/
+.env

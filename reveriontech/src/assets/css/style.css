@@ -2631,4 +2631,30 @@ button:not(:disabled) {
 
 /*# sourceMappingURL=style.css.map */
 
+/* API CALL */
 
+.call-us-btn {
+  transition: all 0.3s ease;
+  font-weight: 500;
+  padding: 8px 16px;
+}
+
+.call-us-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.call-status-alert {
+  animation: slideIn 0.3s forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

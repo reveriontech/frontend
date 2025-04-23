@@ -7,13 +7,14 @@ export default defineConfig({
     devSourcemap: false
   },
   server: {
-		port: 3000,
-		watch: {
-		usePolling: true,
-		interval: 30,
-		},
+	proxy: {
+		'/api': {
+		  target: 'http://localhost:5000',
+		  changeOrigin: true,
+		  secure: false
+		}
+	  }
 	},
-	// Add this test configuration
 	test: {
 		globals: true,
 		environment: 'jsdom',
