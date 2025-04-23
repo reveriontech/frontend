@@ -1,130 +1,137 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaFacebookF, FaLinkedinIn, FaYoutube, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF, FaLinkedinIn, FaYoutube, FaInstagram, FaQuoteLeft } from 'react-icons/fa';
 
 const Team = () => {
-  // State to track which team member is being hovered
-  const [hoveredMember, setHoveredMember] = useState(null);
+  const [activeCard, setActiveCard] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Set component as visible for entrance animations
     setIsVisible(true);
     
-    // Add scroll listener for parallax effects
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const parallaxElements = document.querySelectorAll('.parallax-element');
-      
-      parallaxElements.forEach(el => {
-        const speed = parseFloat(el.getAttribute('data-speed') || 0.1);
-        el.style.transform = `translateY(${scrollPosition * speed}px)`;
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
       });
-    };
+    }, { threshold: 0.2 });
     
-    window.addEventListener('scroll', handleScroll);
+    document.querySelectorAll('.team-card').forEach(card => {
+      observer.observe(card);
+    });
     
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      document.querySelectorAll('.team-card').forEach(card => {
+        observer.unobserve(card);
+      });
     };
   }, []);
 
-  // Team members data with specific social media links for each member
+  // Team members data
   const teamMembers = [
     {
       id: 1,
       name: "Rod A.",
       position: "Founder",
+      quote: "Building tomorrow's solutions with today's innovation.",
       image: "images/profile/profile1.jpg",
       socialLinks: {
-        facebook: "https://facebook.com/rod.a", // replace with actual link
-        linkedin: "https://linkedin.com/in/rod.a", // replace with actual link
-        youtube: "https://youtube.com/c/rod.a", // replace with actual link
-        instagram: "https://instagram.com/rod.a" // replace with actual link
+        facebook: "https://facebook.com/rod.a",
+        linkedin: "https://linkedin.com/in/rod.a",
+        youtube: "https://youtube.com/c/rod.a",
+        instagram: "https://instagram.com/rod.a"
       }
     },
     {
       id: 2,
       name: "Mhok S.",
       position: "CTO",
+      quote: "Technology is only as good as the experience it creates.",
       image: "images/profile/profile2.jpg",
       socialLinks: {
-        facebook: "https://facebook.com/mhok.s", // replace with actual link
-        linkedin: "https://linkedin.com/in/mhok.s", // replace with actual link
-        youtube: "https://youtube.com/c/mhok.s", // replace with actual link
-        instagram: "https://instagram.com/mhok.s" // replace with actual link
+        facebook: "https://facebook.com/mhok.s",
+        linkedin: "https://linkedin.com/in/mhok.s",
+        youtube: "https://youtube.com/c/mhok.s",
+        instagram: "https://instagram.com/mhok.s"
       }
     },
     {
       id: 3,
-      name: "Darian S",
+      name: "Darian S.",
       position: "Business Development",
+      quote: "Growth happens at the intersection of vision and execution.",
       image: "images/profile/profile3.jpg",
       socialLinks: {
-        facebook: "https://facebook.com/darian.s", // replace with actual link
-        linkedin: "https://linkedin.com/in/darian.s", // replace with actual link
-        youtube: "https://youtube.com/c/darian.s", // replace with actual link
-        instagram: "https://instagram.com/darian.s" // replace with actual link
+        facebook: "https://facebook.com/darian.s",
+        linkedin: "https://linkedin.com/in/darian.s",
+        youtube: "https://youtube.com/c/darian.s",
+        instagram: "https://instagram.com/darian.s"
       }
     },
     {
       id: 4,
       name: "Jhon Rexey",
       position: "Frontend Developer",
+      quote: "Great interfaces are invisible, they just feel right.",
       image: "images/profile/profile4.jpg",
       socialLinks: {
-        facebook: "https://facebook.com/jhon.rexey", // replace with actual link
-        linkedin: "https://linkedin.com/in/jhon.rexey", // replace with actual link
-        youtube: "https://youtube.com/c/jhon.rexey", // replace with actual link
-        instagram: "https://instagram.com/jhon.rexey" // replace with actual link
+        facebook: "https://facebook.com/jhon.rexey",
+        linkedin: "https://linkedin.com/in/jhon.rexey",
+        youtube: "https://youtube.com/c/jhon.rexey",
+        instagram: "https://instagram.com/jhon.rexey"
       }
     },
     {
       id: 5,
       name: "Kent A.",
       position: "Backend Developer",
+      quote: "The best code is invisible, reliable, and empowering.",
       image: "images/profile/profile5.jpg",
       socialLinks: {
-        facebook: "https://facebook.com/kent.a", // replace with actual link
-        linkedin: "https://linkedin.com/in/kent.a", // replace with actual link
-        youtube: "https://youtube.com/c/kent.a", // replace with actual link
-        instagram: "https://instagram.com/kent.a" // replace with actual link
+        facebook: "https://facebook.com/kent.a",
+        linkedin: "https://linkedin.com/in/kent.a",
+        youtube: "https://youtube.com/c/kent.a",
+        instagram: "https://instagram.com/kent.a"
       }
     },
     {
       id: 6,
       name: "Racker Joy S.",
       position: "Researcher",
+      quote: "Research is seeing what everyone else has seen and thinking what no one else has thought.",
       image: "images/profile/profile6.jpg",
       socialLinks: {
-        facebook: "https://facebook.com/racker.joy", // replace with actual link
-        linkedin: "https://linkedin.com/in/racker.joy", // replace with actual link
-        youtube: "https://youtube.com/c/racker.joy", // replace with actual link
-        instagram: "https://instagram.com/racker.joy" // replace with actual link
+        facebook: "https://facebook.com/racker.joy",
+        linkedin: "https://linkedin.com/in/racker.joy",
+        youtube: "https://youtube.com/c/racker.joy",
+        instagram: "https://instagram.com/racker.joy"
       }
     },
     {
       id: 7,
       name: "WhiteFish",
       position: "Lead Creatives",
+      quote: "Creativity is intelligence having fun.",
       image: "images/profile/profile7.jpg",
       socialLinks: {
-        facebook: "https://facebook.com/whitefish", // replace with actual link
-        linkedin: "https://linkedin.com/in/whitefish", // replace with actual link
-        youtube: "https://youtube.com/c/whitefish", // replace with actual link
-        instagram: "https://instagram.com/whitefish" // replace with actual link
+        facebook: "https://facebook.com/whitefish",
+        linkedin: "https://linkedin.com/in/whitefish",
+        youtube: "https://youtube.com/c/whitefish",
+        instagram: "https://instagram.com/whitefish"
       }
     },
     {
       id: 8,
       name: "Jennifer C.",
       position: "CFO",
+      quote: "Good financial decisions today create better opportunities tomorrow.",
       image: "images/profile/profile8.jpg",
       socialLinks: {
-        facebook: "https://facebook.com/jennifer.c", // replace with actual link
-        linkedin: "https://linkedin.com/in/jennifer.c", // replace with actual link
-        youtube: "https://youtube.com/c/jennifer.c", // replace with actual link
-        instagram: "https://instagram.com/jennifer.c" // replace with actual link
+        facebook: "https://facebook.com/jennifer.c",
+        linkedin: "https://linkedin.com/in/jennifer.c",
+        youtube: "https://youtube.com/c/jennifer.c",
+        instagram: "https://instagram.com/jennifer.c"
       }
     }
   ];
@@ -137,70 +144,46 @@ const Team = () => {
     instagram: <FaInstagram />
   };
 
-  // Mouse event handlers
-  const handleMouseEnter = (memberId) => {
-    setHoveredMember(memberId);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredMember(null);
-  };
-
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
+        when: "beforeChildren",
         staggerChildren: 0.1,
         delayChildren: 0.2
       }
     }
   };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { 
-        type: "spring", 
-        stiffness: 100, 
-        damping: 15,
-        duration: 0.6 
-      }
-    }
-  };
-
   const headerVariants = {
-    hidden: { y: -20, opacity: 0 },
+    hidden: { y: -40, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
       transition: { 
         type: "spring", 
-        stiffness: 100, 
-        damping: 10,
-        duration: 0.6 
+        stiffness: 90, 
+        damping: 12,
+        duration: 0.7
       }
     }
   };
 
-  // Card animation variants
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 50 },
     visible: (i) => ({
       opacity: 1,
       y: 0,
       transition: {
         delay: 0.1 * i,
-        duration: 0.5,
-        ease: "easeOut"
+        duration: 0.6,
+        ease: [0.25, 1, 0.5, 1]
       }
     }),
     hover: {
-      y: -10,
-      boxShadow: "0 25px 50px rgba(0,0,0,0.1)",
+      y: -12,
       transition: {
         duration: 0.3,
         ease: "easeOut"
@@ -210,24 +193,28 @@ const Team = () => {
 
   const socialVariants = {
     hidden: { opacity: 0, scale: 0 },
-    visible: {
+    visible: (i) => ({
       opacity: 1,
       scale: 1,
       transition: { 
+        delay: 0.05 * i,
         type: "spring", 
-        stiffness: 500, 
-        damping: 15 
+        stiffness: 260, 
+        damping: 20 
       }
-    },
+    }),
     hover: {
-      scale: 1.2,
-      backgroundColor: "#5271ff",
-      color: "#fff",
+      scale: 1.15,
+      y: -5,
       transition: {
-        duration: 0.2,
+        duration: 0.3,
         ease: "easeOut"
       }
     }
+  };
+
+  const handleCardClick = (id) => {
+    setActiveCard(activeCard === id ? null : id);
   };
 
   return (
@@ -235,88 +222,61 @@ const Team = () => {
       className="position-relative py-5" 
       id="team" 
       style={{
-        backgroundColor: "#f8f9fa",
-        minHeight: "80vh",
+        backgroundColor: "#f9f9f9",
+        minHeight: "100vh",
         overflow: "hidden",
-        paddingTop: "80px",
-        paddingBottom: "80px"
+        paddingTop: "100px",
+        paddingBottom: "100px"
       }}
     >
-      {/* Background decorative elements */}
-      <motion.div 
-        className="position-absolute"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.15, scale: 1 }}
-        transition={{ duration: 1, ease: "easeOut" }}
-        style={{
-          width: "400px",
-          height: "400px",
-          borderRadius: "50%",
-          background: "linear-gradient(135deg, #5271ff 0%, #3b5afe 100%)",
-          top: "-100px",
-          right: "-100px",
-          zIndex: 0
-        }}
-      />
+      {/* Decorative Elements */}
+      <div className="position-absolute" style={{
+        width: "500px",
+        height: "500px",
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(250,163,7,0.05) 0%, rgba(250,163,7,0.02) 50%, rgba(250,163,7,0.01) 70%, rgba(250,163,7,0) 100%)",
+        top: "-250px",
+        right: "-250px",
+        zIndex: 0
+      }} />
       
-      <motion.div 
-        className="position-absolute parallax-element"
-        data-speed="-0.05"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.15, scale: 1 }}
-        transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-        style={{
-          width: "300px",
-          height: "300px",
-          borderRadius: "50%",
-          background: "linear-gradient(135deg, #ff5c7c 0%, #ff3c6a 100%)",
-          bottom: "-50px",
-          left: "-50px",
-          zIndex: 0
-        }}
-      />
+      <div className="position-absolute" style={{
+        width: "400px",
+        height: "400px",
+        borderRadius: "50%",
+        background: "radial-gradient(circle, rgba(250,163,7,0.05) 0%, rgba(250,163,7,0.02) 50%, rgba(250,163,7,0.01) 70%, rgba(250,163,7,0) 100%)",
+        bottom: "-200px",
+        left: "-200px",
+        zIndex: 0
+      }} />
       
-      <motion.div 
-        className="position-absolute parallax-element"
-        data-speed="0.03"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.05 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        style={{
-          width: "200px",
-          height: "200px",
-          background: "#000",
-          transform: "rotate(45deg)",
-          top: "30%",
-          right: "15%",
-          zIndex: 0
-        }}
-      />
-      
-      {/* Floating decorative elements */}
-      {[...Array(8)].map((_, i) => (
+      {/* Floating Elements */}
+      {[...Array(10)].map((_, i) => (
         <motion.div 
           key={i}
-          className="position-absolute parallax-element"
-          data-speed={0.05 * (Math.random() - 0.5)}
+          className="position-absolute"
           initial={{ 
             x: Math.random() * 100 - 50, 
             y: Math.random() * 100 - 50, 
-            opacity: 0 
+            opacity: 0,
+            rotate: Math.random() * 180
           }}
           animate={{ 
-            opacity: 0.08
+            opacity: 0.3,
+            y: [0, Math.random() * 20 - 10, 0],
+            rotate: [0, Math.random() * 180]
           }}
           transition={{ 
-            delay: 0.3 + i * 0.1,
-            duration: 0.8
+            repeat: Infinity,
+            repeatType: "reverse",
+            duration: 8 + Math.random() * 7,
+            delay: i * 0.5
           }}
           style={{
-            width: 10 + Math.random() * 30,
-            height: 10 + Math.random() * 30,
-            borderRadius: Math.random() > 0.5 ? '50%' : '0',
-            transform: Math.random() > 0.5 ? 'rotate(45deg)' : '',
-            backgroundColor: Math.random() > 0.5 ? '#5271ff' : '#ff5c7c',
+            width: 5 + Math.random() * 12,
+            height: 5 + Math.random() * 12,
+            borderRadius: Math.random() > 0.7 ? '50%' : Math.random() > 0.5 ? '0' : '4px',
+            background: `rgba(250, 163, 7, ${0.1 + Math.random() * 0.2})`,
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
             zIndex: 0
@@ -331,167 +291,238 @@ const Team = () => {
           animate={isVisible ? "visible" : "hidden"}
           variants={containerVariants}
         >
-          <div className="col-lg-8 text-center">
-            <motion.h2 
-              className="mb-3"
-              variants={headerVariants}
-              style={{ 
-                fontSize: '2.5rem', 
+          <div className="col-lg-9 text-center">
+            <motion.div variants={headerVariants}>
+              <h2 style={{ 
+                fontSize: '3rem', 
                 fontWeight: '700', 
-                color: '#333',
-                position: 'relative',
-                display: 'inline-block'
-              }}
-            >
-              Our Team
-              <motion.div 
-                initial={{ width: 0 }}
-                animate={{ width: "80px" }}
-                transition={{ delay: 0.5, duration: 0.8, ease: "easeInOut" }}
-                style={{ 
-                  height: "4px", 
-                  backgroundColor: "#5271ff",
-                  borderRadius: "2px",
-                  marginTop: "10px",
-                  marginLeft: "auto",
-                  marginRight: "auto"
-                }}
-              />
-            </motion.h2>
-            <motion.p 
-              className="text-muted mx-auto mb-5"
-              variants={headerVariants}
-              style={{
+                color: '#222',
+                marginBottom: '20px',
+                position: 'relative'
+              }}>
+                Our Team
+              </h2>
+              <div style={{ 
+                width: "80px", 
+                height: "3px", 
+                background: "#faa307", 
+                margin: "0 auto 30px",
+                borderRadius: "2px"
+              }}></div>
+              <p style={{
                 fontSize: '1.1rem',
                 maxWidth: '700px',
-                lineHeight: '1.7'
-              }}
-            >
-              Launch your project and leverage our expertise in designing and 
-              managing high-performance, conversion-focused websites.
-            </motion.p>
+                lineHeight: '1.8',
+                color: '#555',
+                margin: '0 auto 20px'
+              }}>
+                Launch your project and leverage our expertise in designing and managing high-performance, conversion-focused websites.
+              </p>
+            </motion.div>
           </div>
         </motion.div>
 
         <div className="row g-4">
           {teamMembers.map((member, index) => (
             <motion.div 
-              className="col-lg-3 col-md-6 col-12" 
+              className="col-lg-3 col-md-6 col-12 team-card" 
               key={member.id}
               custom={index}
               initial="hidden"
               animate={isVisible ? "visible" : "hidden"}
               variants={cardVariants}
               whileHover="hover"
+              onClick={() => handleCardClick(member.id)}
             >
-              <div 
-                className="bg-white rounded shadow-sm overflow-hidden"
+              <motion.div 
+                className="card border-0 h-100"
                 style={{
-                  transition: "all 0.3s ease",
-                  transform: hoveredMember === member.id ? 'translateY(-10px)' : 'translateY(0)',
-                  boxShadow: hoveredMember === member.id ? 
-                    '0 15px 30px rgba(0,0,0,0.1)' : 
-                    '0 5px 15px rgba(0,0,0,0.05)',
-                  borderTop: hoveredMember === member.id ? 
-                    '3px solid #5271ff' : 
-                    '3px solid transparent',
-                  height: '100%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
-                  backdropFilter: 'blur(10px)'
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  backgroundColor: "#fff",
+                  boxShadow: activeCard === member.id 
+                    ? "0 20px 40px rgba(0,0,0,0.14)" 
+                    : "0 10px 30px rgba(0,0,0,0.08)",
+                  transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+                  transform: activeCard === member.id ? 'translateY(-15px)' : 'translateY(0)',
+                  cursor: "pointer"
                 }}
-                onMouseEnter={() => handleMouseEnter(member.id)}
-                onMouseLeave={handleMouseLeave}
               >
-                <div 
-                  className="text-center p-4"
-                >
-                  <div className="position-relative mb-4">
-                    <img 
-                      src={member.image} 
-                      className="rounded-circle" 
-                      alt={member.name} 
+                <div style={{ 
+                  height: "230px", 
+                  overflow: "hidden",
+                  position: "relative"
+                }}>
+                  <div className="position-absolute" style={{
+                    inset: 0,
+                    background: activeCard === member.id 
+                      ? "linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(250,163,7,0.9) 100%)" 
+                      : "linear-gradient(to bottom, rgba(0,0,0,0) 70%, rgba(0,0,0,0.7) 100%)",
+                    zIndex: 1,
+                    transition: "all 0.4s ease"
+                  }} />
+                  
+                  <img 
+                    src={member.image} 
+                    alt={member.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "center top",
+                      transition: "all 0.6s ease",
+                      transform: activeCard === member.id ? 'scale(1.1)' : 'scale(1)'
+                    }}
+                  />
+                  
+                  {activeCard === member.id && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4 }}
+                      className="position-absolute d-flex align-items-center justify-content-center"
                       style={{
-                        width: "120px",
-                        height: "120px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                        border: "5px solid white",
-                        boxShadow: "0 5px 15px rgba(0,0,0,0.1)",
-                        transition: "all 0.3s ease",
-                        transform: hoveredMember === member.id ? 'scale(1.05)' : 'scale(1)'
+                        inset: 0,
+                        zIndex: 2,
+                        padding: "20px"
                       }}
-                    />
-                    {hoveredMember === member.id && (
-                      <motion.div 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="position-absolute"
-                        style={{
-                          width: "130px",
-                          height: "130px",
-                          borderRadius: "50%",
-                          border: "2px solid #5271ff",
-                          top: "-5px",
-                          left: "50%",
-                          transform: "translateX(-50%)",
-                          zIndex: -1
-                        }}
-                      />
+                    >
+                      <div className="text-center text-white">
+                        <div style={{ 
+                          fontSize: "1.8rem", 
+                          color: "rgba(255,255,255,0.3)",
+                          marginBottom: "10px"
+                        }}>
+                          <FaQuoteLeft />
+                        </div>
+                        <p style={{ 
+                          fontSize: "0.95rem",
+                          fontStyle: "italic",
+                          lineHeight: "1.6"
+                        }}>
+                          "{member.quote}"
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                  
+                  {activeCard !== member.id && (
+                    <div className="position-absolute" style={{ 
+                      left: "20px",
+                      bottom: "15px",
+                      zIndex: 2
+                    }}>
+                      <h5 style={{ 
+                        color: '#fff', 
+                        fontSize: '1.1rem',
+                        fontWeight: '600',
+                        marginBottom: '0',
+                        textShadow: '0 2px 4px rgba(0,0,0,0.3)'
+                      }}>
+                        {member.name}
+                      </h5>
+                    </div>
+                  )}
+                </div>
+                
+                <div className="p-4">
+                  <div className="d-flex justify-content-between align-items-center mb-3">
+                    {activeCard !== member.id && (
+                      <h6 style={{ 
+                        color: "rgb(70, 62, 62)",
+                        fontSize: '0.9rem',
+                        fontWeight: '600',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px',
+                        margin: '0'
+                      }}>
+                        {member.position}
+                      </h6>
+                    )}
+                    
+                    {activeCard === member.id && (
+                      <>
+                        <h5 style={{ 
+                          color: '#222', 
+                          fontSize: '1.25rem',
+                          fontWeight: '600',
+                          margin: '0'
+                        }}>
+                          {member.name}
+                        </h5>
+                        <h6 style={{ 
+                          color: '#faa307', 
+                          fontSize: '0.85rem',
+                          fontWeight: '600',
+                          margin: '0'
+                        }}>
+                          {member.position}
+                        </h6>
+                      </>
                     )}
                   </div>
-                  <h4 
-                    style={{ 
-                      fontSize: '1.25rem', 
-                      fontWeight: '600',
-                      marginBottom: '5px',
-                      transition: "all 0.3s ease",
-                      color: hoveredMember === member.id ? '#5271ff' : '#333'
-                    }}
-                  >
-                    {member.name}
-                  </h4>
-                  <p 
-                    style={{ 
-                      fontSize: '0.9rem', 
-                      color: '#666',
-                      marginBottom: '20px'
-                    }}
-                  >
-                    {member.position}
-                  </p>
                   
-                  {/* Social Links */}
-                  <ul className="list-unstyled d-flex justify-content-center mb-0 gap-2">
+                  <motion.div
+                    className="d-flex gap-2 mt-3"
+                    initial="hidden"
+                    animate="visible"
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: {
+                        opacity: 1,
+                        transition: {
+                          when: "beforeChildren",
+                          staggerChildren: 0.1
+                        }
+                      }
+                    }}
+                  >
                     {Object.entries(member.socialLinks).map(([platform, link], i) => (
-                      <motion.li key={platform} className="mx-1" variants={socialVariants} whileHover="hover">
+                      <motion.div 
+                        key={platform} 
+                        custom={i}
+                        variants={socialVariants}
+                        whileHover="hover"
+                        style={{ zIndex: 1 }}
+                      >
                         <a 
                           href={link} 
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{
-                            backgroundColor: hoveredMember === member.id ? "#f0f0f0" : "#f8f8f8",
-                            color: "#666",
+                            background: "#f5f5f5",
+                            color: "#faa307",
                             width: "36px",
                             height: "36px",
                             borderRadius: "50%",
                             display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
-                            fontSize: "0.9rem",
+                            fontSize: "0.85rem",
+                            boxShadow: "0 3px 10px rgba(0,0,0,0.05)",
                             transition: "all 0.3s ease",
-                            boxShadow: hoveredMember === member.id ? 
-                              "0 4px 10px rgba(0,0,0,0.1)" : 
-                              "none"
+                            border: "2px solid transparent"
                           }}
                           aria-label={platform}
+                          onClick={(e) => e.stopPropagation()}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.background = "#faa307";
+                            e.currentTarget.style.color = "#fff";
+                            e.currentTarget.style.borderColor = "#fff";
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.background = "#f5f5f5";
+                            e.currentTarget.style.color = "#faa307";
+                            e.currentTarget.style.borderColor = "transparent";
+                          }}
                         >
                           {socialIcons[platform]}
                         </a>
-                      </motion.li>
+                      </motion.div>
                     ))}
-                  </ul>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>
