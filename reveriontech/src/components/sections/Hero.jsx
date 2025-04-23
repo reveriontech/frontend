@@ -1,4 +1,55 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Environment, Float } from '@react-three/drei';
+import * as THREE from 'three';
+
+const Bubble = ({ position, scale, color }) => {
+  return (
+    <Float speed={1.5} rotationIntensity={15} floatIntensity={2.5} floatingRange={[-1.5, 1.5]}>
+      <mesh position={position} scale={scale}>
+        <sphereGeometry args={[1, 128, 128]} />
+        <meshPhysicalMaterial
+          color={new THREE.Color(color)}
+          transmission={1} // Glass refraction
+          roughness={0}
+          thickness={10} // thicker bubble wall
+          clearcoat={1}
+          clearcoatRoughness={0}
+          reflectivity={1}
+          ior={1} // closer to water
+          specularIntensity={1}
+          opacity={0.7} // Reduced opacity to better see background
+          transparent={true}
+          envMapIntensity={1.5}
+        />
+      </mesh>
+    </Float>
+  );
+};
+
+const BubblesBackground = () => {
+  return (
+    <div className="bubble-container">
+      <Canvas
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 1,
+          pointerEvents: "none", // Allow clicking through the canvas
+        }}
+        camera={{ position: [0, 0, 8], fov: 50 }}
+      >
+        <ambientLight intensity={0.3} />
+        <Bubble position={[-2, 0, 0]} scale={1.2} color="#aaccee" />
+        <Bubble position={[0, 1, -1]} scale={1.5} color="#ccddff" />
+        <Bubble position={[2, -1, 1]} scale={1.1} color="#bbddff" />
+      </Canvas>
+    </div>
+  );
+};
 
 const Hero = () => {
   const scrollToSection = (elementId, e) => {
@@ -20,8 +71,14 @@ const Hero = () => {
   
   return (
     <section className="bg-home" style={{backgroundImage: "url('/images/landingpict.jpg')"}} id="home">
-      <div className="bg-overlay"></div>
-      <div className="home-center">
+      {/* Bubble background component */}
+      <BubblesBackground />
+      
+      {/* Semi-transparent overlay */}
+      <div className="bg-overlay" style={{ zIndex: 2 }}></div>
+      
+      {/* Content */}
+      <div className="home-center" style={{ position: "relative", zIndex: 3 }}>
         <div className="home-desc-center">
           <div className="container">
             <div className="row justify-content-center">
@@ -34,26 +91,26 @@ const Hero = () => {
                     Empower your business with <span className="words-color">Web3</span>, <span className="words-color">GenAI</span>, and <span className="words-color">Scalable</span> digital solutions
                   </p>
                   <div style={{ display: 'flex', justifyContent: 'center', gap: '20px'}}>
-                  <div className="mt-4 pt-2">
-                    <a 
-                      href="https://forms.clickup.com/9016503780/p/f/8cptvf4-496/BTYBZQ6D05CPYSPJKU/project-intake-form" 
-                      className="btn btn-custom"
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                    >
-                     Start your project
-                    </a>
-                  </div>
-                  <div className="mt-4 pt-2">
-                    <a 
-                      href="https://calendly.com/reveriontech" 
-                      className="btn btn-custom1"
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                    >
-                      Want to talk?
-                    </a>
-                  </div>
+                    <div className="mt-4 pt-2">
+                      <a 
+                        href="https://forms.clickup.com/9016503780/p/f/8cptvf4-496/BTYBZQ6D05CPYSPJKU/project-intake-form" 
+                        className="btn btn-custom"
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                      >
+                       Start your project
+                      </a>
+                    </div>
+                    <div className="mt-4 pt-2">
+                      <a 
+                        href="https://calendly.com/reveriontech" 
+                        className="btn btn-custom1"
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                      >
+                        Let's talk
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
