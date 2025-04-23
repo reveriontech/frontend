@@ -5,7 +5,7 @@ import * as THREE from 'three';
 
 const Bubble = ({ position, scale, color }) => {
   return (
-    <Float speed={1.5} rotationIntensity={15} floatIntensity={2.5} floatingRange={[-1.5, 1.5]}>
+    <Float speed={1.5} rotationIntensity={15} floatIntensity={2} floatingRange={[-1, 1]}>
       <mesh position={position} scale={scale}>
         <sphereGeometry args={[1, 128, 128]} />
         <meshPhysicalMaterial
@@ -28,6 +28,8 @@ const Bubble = ({ position, scale, color }) => {
 };
 
 const BubblesBackground = () => {
+  const texture = '/images/landingpict.jpg' // make sure it's inside /public/images
+
   return (
     <div className="bubble-container">
       <Canvas
@@ -38,18 +40,22 @@ const BubblesBackground = () => {
           width: "100%",
           height: "100%",
           zIndex: 1,
-          pointerEvents: "none", // Allow clicking through the canvas
+          pointerEvents: "none",
         }}
         camera={{ position: [0, 0, 8], fov: 50 }}
       >
-        <ambientLight intensity={0.3} />
+        <ambientLight intensity={1} />
+
+        {/* ✅ Use landing image as env background for bubble reflections */}
+        <Environment background={true} files={texture} blur={0} envMapIntensity={5} />
+
         <Bubble position={[-2, 0, 0]} scale={1.2} color="#aaccee" />
         <Bubble position={[0, 1, -1]} scale={1.5} color="#ccddff" />
         <Bubble position={[2, -1, 1]} scale={1.1} color="#bbddff" />
       </Canvas>
     </div>
-  );
-};
+  )
+}
 
 const Hero = () => {
   const scrollToSection = (elementId, e) => {
@@ -70,7 +76,9 @@ const Hero = () => {
   };
   
   return (
-    <section className="bg-home" style={{backgroundImage: "url('/images/landingpict.jpg')"}} id="home">
+    <section className="bg-home" style={{backgroundImage: "url('/images/landingpict.jpg')", backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    }} id="home">
       {/* Bubble background component */}
       <BubblesBackground />
       
