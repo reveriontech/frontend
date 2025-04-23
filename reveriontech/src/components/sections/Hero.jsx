@@ -4,58 +4,68 @@ import { Environment, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
 const Bubble = ({ position, scale, color }) => {
-  return (
-    <Float speed={1.5} rotationIntensity={15} floatIntensity={2} floatingRange={[-1, 1]}>
-      <mesh position={position} scale={scale}>
-        <sphereGeometry args={[1, 128, 128]} />
-        <meshPhysicalMaterial
-          color={new THREE.Color(color)}
-          transmission={1} // Glass refraction
-          roughness={0}
-          thickness={10} // thicker bubble wall
-          clearcoat={1}
-          clearcoatRoughness={0}
-          reflectivity={1}
-          ior={1} // closer to water
-          specularIntensity={1}
-          opacity={0.7} // Reduced opacity to better see background
-          transparent={true}
-          envMapIntensity={1.5}
-        />
-      </mesh>
-    </Float>
-  );
-};
+  const meshRef = useRef();
+  
+    useFrame((state) => {
+      if (meshRef.current) {
+        meshRef.current.rotation.x = Math.sin(state.clock.getElapsedTime() * 0.2) * 0.05;
+        meshRef.current.rotation.y = Math.sin(state.clock.getElapsedTime() * 0.1) * 0.05;
+      }
+    });
+    return (
+      <Float speed={1} rotationIntensity={2} floatIntensity={1.5} floatingRange={[-0.5, 0.5]}>
+        <mesh ref={meshRef} position={position} scale={scale}>
+          <sphereGeometry args={[1, 128, 128]} />
+          <meshPhysicalMaterial
+            color={new THREE.Color(color)}
+            transmission={0.96} 
+            roughness={0.05} 
+            thickness={0.5} 
+            clearcoat={1}
+            clearcoatRoughness={0.1} 
+            reflectivity={0.8}
+            ior={1.3} 
+            specularIntensity={1.5}
+            opacity={0.85} 
+            transparent={true}
+            envMapIntensity={2} 
+            metalness={0.05} 
+            attenuationColor={new THREE.Color("#ffffff")}
+            attenuationDistance={0.5}
+          />
+        </mesh>
+      </Float>
+    );
+  };
+  
 
-const BubblesBackground = () => {
-  const texture = '/images/landingpict.jpg' // make sure it's inside /public/images
+  const BubblesBackground = () => {
+    const texture = '/images/landingpict.jpg' 
+    return (
+      <div className="bubble-container">
+        <Canvas
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            zIndex: 1,
+            pointerEvents: "none",
+          }}
+          camera={{ position: [0, 0, 8], fov: 50 }}
+        >
+          <ambientLight intensity={1} />
 
-  return (
-    <div className="bubble-container">
-      <Canvas
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          zIndex: 1,
-          pointerEvents: "none",
-        }}
-        camera={{ position: [0, 0, 8], fov: 50 }}
-      >
-        <ambientLight intensity={1} />
-
-        {/* ✅ Use landing image as env background for bubble reflections */}
-        <Environment background={true} files={texture} blur={0} envMapIntensity={5} />
-
-        <Bubble position={[-2, 0, 0]} scale={1.2} color="#aaccee" />
-        <Bubble position={[0, 1, -1]} scale={1.5} color="#ccddff" />
-        <Bubble position={[2, -1, 1]} scale={1.1} color="#bbddff" />
-      </Canvas>
-    </div>
-  )
-}
+          <Environment files={texture} background={false} envMapIntensity={1.5} />
+  
+          <Bubble position={[-2, 0, 0]} scale={1.2} color="#aaccee" />
+          <Bubble position={[0, 1, -1]} scale={1.5} color="#ccddff" />
+          <Bubble position={[2, -1, 1]} scale={1.1} color="#bbddff" />
+        </Canvas>
+      </div>
+    )
+  }
 
 const Hero = () => {
   const scrollToSection = (elementId, e) => {
@@ -79,7 +89,7 @@ const Hero = () => {
     <section className="bg-home" style={{backgroundImage: "url('/images/landingpict.jpg')", backgroundSize: 'cover',
       backgroundPosition: 'center'
     }} id="home">
-      {/* Bubble background component */}
+
       <BubblesBackground />
       
       {/* Semi-transparent overlay */}
