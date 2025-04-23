@@ -618,14 +618,21 @@ const Navbar = () => {
             </ul>
 
             <div className={`${isSticky ? 'sticky' : ''} d-flex align-items-center ms-auto`}>
-              <button 
-                className={`btn ${isSticky ? 'btn-primary' : 'btn-outline-light'} rounded-pill call-us-btn`}
-                onClick={initiateCall}
-                disabled={isCallLoading}
-              >
-                <FaPhone className="me-2" />
-                {isCallLoading ? 'Connecting...' : 'Call Us'}
-              </button>
+             <div className={`${isSticky ? 'sticky' : ''} d-flex align-items-center ms-auto`}>
+                <button 
+                  className={`btn rounded-pill call-us-btn`}
+                  style={{
+                    backgroundColor: isSticky ? '#faa307' : 'transparent',
+                    borderColor: isSticky ? '#faa307' : '#ffffff',
+                    color: isSticky ? '#ffffff' : '#ffffff'
+                  }}
+                  onClick={initiateCall}
+                  disabled={isCallLoading}
+                >
+                  <FaPhone className="me-2" />
+                  {isCallLoading ? 'Connecting...' : 'Call Us'}
+                </button>
+              </div>
             </div>
           </div>
         </div>
