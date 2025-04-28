@@ -1,0 +1,14 @@
+[build]
+  command = "./deploy.sh"
+  publish = "reveriontech/dist"
+  base = "/"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "10.8.3"
+  YARN_VERSION = "4.5.0"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 

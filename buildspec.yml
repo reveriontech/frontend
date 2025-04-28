@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - echo Installing dependencies...
+      - npm install
+      - cd reveriontech && npm install && cd ..
+  build:
+    commands:
+      - echo Starting the build...
+      - cd reveriontech && npm run build && cd ..
+
+artifacts:
+  base-directory: 'reveriontech/dist'
+  files:
+    - '**/*'
+
+cache:
+  paths:
+    - 'node_modules/**/*'
+    - 'reveriontech/node_modules/**/*' 
