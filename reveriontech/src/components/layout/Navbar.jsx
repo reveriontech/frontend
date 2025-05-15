@@ -577,15 +577,18 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <div className={`${isSticky ? 'sticky' : ''} d-flex align-items-center ms-auto`}>
+            <div className={`${isSticky ? 'sticky' : ''} d-flex align-items-center ms-auto`}
+                 style={{ width: isMobile ? '100%' : 'auto', justifyContent: isMobile ? 'center' : 'flex-end', marginTop: isMobile ? 12 : 0 }}>
               <a 
                 href="tel:+19786669193"
-                className={`btn rounded-pill call-us-btn`}
+                className={`btn rounded-pill call-us-btn w-100 w-lg-auto`}
                 style={{
                   backgroundColor: isSticky ? '#faa307' : 'transparent',
                   borderColor: isSticky ? '#faa307' : '#ffffff',
                   color: isSticky ? '#ffffff' : '#ffffff',
-                  textDecoration: 'none'
+                  textDecoration: 'none',
+                  width: isMobile ? '100%' : 'auto',
+                  marginTop: isMobile ? 12 : 0
                 }}
               >
                 <FaPhone className="me-2" />
