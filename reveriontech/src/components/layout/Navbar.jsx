@@ -577,11 +577,11 @@ const Navbar = () => {
               </li>
             </ul>
 
-            <div className={`${isSticky ? 'sticky' : ''} d-flex align-items-center ms-auto`}
+            <div className={`${isSticky ? 'sticky' : ''} d-flex align-items-center ms-auto navbar-call-btn-mobile`}
                  style={{ width: isMobile ? '100%' : 'auto', justifyContent: isMobile ? 'center' : 'flex-end', marginTop: isMobile ? 12 : 0 }}>
               <a 
                 href="tel:+19786669193"
-                className={`btn rounded-pill call-us-btn w-100 w-lg-auto`}
+                className={`btn rounded-pill call-us-btn w-100 w-lg-auto navbar-call-btn-mobile`}
                 style={{
                   backgroundColor: isSticky ? '#faa307' : 'transparent',
                   borderColor: isSticky ? '#faa307' : '#ffffff',
@@ -592,7 +592,7 @@ const Navbar = () => {
                 }}
               >
                 <FaPhone className="me-2" />
-                Call Us
+                Call +1 (978) 666-9193
               </a>
             </div>
           </div>

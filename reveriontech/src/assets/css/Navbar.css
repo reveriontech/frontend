@@ -409,6 +409,24 @@
       color: #353535;
       border: none;
     }
+
+    .navbar-call-btn-mobile {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      width: 100% !important;
+      margin: 18px 0 18px 0 !important;
+    }
+    .navbar-call-btn-mobile.call-us-btn,
+    .navbar-call-btn-mobile .call-us-btn {
+      max-width: 90vw !important;
+      width: 90vw !important;
+      margin: 0 auto !important;
+      padding: 14px 0 !important;
+      font-size: 1.1rem !important;
+      box-sizing: border-box;
+      display: block;
+    }
   }
 
     
