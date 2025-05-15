@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import $ from 'jquery';
-import { FaBars, FaTimes, FaUser } from 'react-icons/fa';
+import { FaBars, FaTimes, FaUser, FaPhone } from 'react-icons/fa';
 import AuthModal from '../sections/AuthModal';
 import { useAuth } from '../../context/AuthContext';
 import '../../assets/css/Navbar.css'; 
-
-import {FaPhone} from 'react-icons/fa';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -22,8 +20,6 @@ const Navbar = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
   const navbarCollapseRef = useRef(null);
   const isScrollingRef = useRef(false);
-  const [isCallLoading, setIsCallLoading] = useState(false);
-  const [callStatus, setCallStatus] = useState(null);
   
   // Check if we're in mobile view
   useEffect(() => {
@@ -424,42 +420,6 @@ const Navbar = () => {
   const handleMouseLeave = () => {
     setHoveredItem(null);
   };
-
-  const initiateCall = async () => {
-    try {
-      setIsCallLoading(true);
-      setCallStatus(null);
-      
-      const response = await fetch("/api/initiate-call", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          to: "+639912090940" 
-        })
-      });
-  
-      const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.message || `Server responded with status: ${response.status}`);
-      }
-      
-      setCallStatus({
-        type: 'success',
-        message: 'Call is being connected.'
-      });
-    } catch (error) {
-      console.error("Error initiating call:", error);
-      setCallStatus({
-        type: 'danger',
-        message: error.message || 'Failed to connect call. Please try again later.'
-      });
-    } finally {
-      setIsCallLoading(false);
-    }
-  };
   
   return (
     <>
@@ -618,50 +578,24 @@ const Navbar = () => {
             </ul>
 
             <div className={`${isSticky ? 'sticky' : ''} d-flex align-items-center ms-auto`}>
-             <div className={`${isSticky ? 'sticky' : ''} d-flex align-items-center ms-auto`}>
-                <button 
-                  className={`btn rounded-pill call-us-btn`}
-                  style={{
-                    backgroundColor: isSticky ? '#faa307' : 'transparent',
-                    borderColor: isSticky ? '#faa307' : '#ffffff',
-                    color: isSticky ? '#ffffff' : '#ffffff'
-                  }}
-                  onClick={initiateCall}
-                  disabled={isCallLoading}
-                >
-                  <FaPhone className="me-2" />
-                  {isCallLoading ? 'Connecting...' : 'Call Us'}
-                </button>
-              </div>
+              <a 
+                href="tel:+19786669193"
+                className={`btn rounded-pill call-us-btn`}
+                style={{
+                  backgroundColor: isSticky ? '#faa307' : 'transparent',
+                  borderColor: isSticky ? '#faa307' : '#ffffff',
+                  color: isSticky ? '#ffffff' : '#ffffff',
+                  textDecoration: 'none'
+                }}
+              >
+                <FaPhone className="me-2" />
+                Call Us
+              </a>
             </div>
           </div>
         </div>
       </nav>
 
-       {/* Call status alert */}
-       {callStatus && (
-        <div 
-          className={`alert alert-${callStatus.type} alert-dismissible fade show call-status-alert`} 
-          role="alert"
-          style={{
-            position: 'fixed',
-            top: '80px',
-            right: '20px',
-            zIndex: 1050,
-            maxWidth: '300px',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)'
-          }}
-        >
-          {callStatus.message}
-          <button 
-            type="button" 
-            className="btn-close" 
-            onClick={() => setCallStatus(null)}
-            aria-label="Close"
-          ></button>
-        </div>
-      )}
-      
       {!user && (
         <AuthModal 
           isOpen={isAuthModalOpen} 
