@@ -421,6 +421,14 @@ const Navbar = () => {
     setHoveredItem(null);
   };
   
+  // Helper to get logo src based on device and sticky state
+  const getLogoSrc = () => {
+    if (isMobile) {
+      return "/images/ReverionTechLogo-white.png";
+    }
+    return isSticky ? "/images/ReverionTechLogo-dark.png" : "/images/ReverionTechLogo-white.png";
+  };
+  
   return (
     <>
       <nav 
@@ -439,7 +447,7 @@ const Navbar = () => {
         <div className="container">
           <Link className="navbar-brand" to="/">
             <img 
-              src={isSticky ? "/images/ReverionTechLogo-dark.png" : "/images/ReverionTechLogo-white.png"} 
+              src={getLogoSrc()} 
               className="navbar-image" 
               alt="Logo" 
               style={{ width: "150px", height: "auto" }}

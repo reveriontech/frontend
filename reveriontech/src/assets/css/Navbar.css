@@ -516,6 +516,14 @@
     .navbar-call-btn-mobile.call-us-btn:hover {
       background-color: #e69500 !important;
     }
+    
+    .navbar-custom .navbar-collapse {
+      flex-direction: column !important;
+      align-items: stretch !important;
+    }
+    .navbar-nav {
+      width: 100%;
+    }
   }
 
   @keyframes slideDown {
